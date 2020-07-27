@@ -45,18 +45,35 @@ class UserController extends Controller
            'institution_id' => Auth::user()->institution_id,
         ]);
     }
+    //note that user are refer to as the student
 
-    public function create()
+    public function createUser(Request $request) // create user for each class by the admin of the current institution
+    {
+    
+        $newUser = new User;
+
+        $newUser->name = $request->name;
+
+        $newUser->email = $request->email;
+        
+        $newUser->password = $request->password;
+
+        // request for the id of the class to which the student is to be added to from the url
+
+        $newUser->classes_id = $request->id;
+        
+        $newUser->save();
+
+        
+    }
+
+    public function editUser($id)
     {
         $currentAdmin = Auth::user();
         /*
-            getting current admin details
-        */
-        $Admin = Admin::where('id', $currentAdmin->id)->first();
-        /*
             getting current admin institution id
         */
-        $adminInstitutionId = $Admin->institution_id;
+        $adminInstitutionId = $currentAdmin->institution_id;
         /*
             getting current admin institution details
         */
@@ -68,40 +85,6 @@ class UserController extends Controller
        // $institution = Institution::all();
     
         return view('Admin.Dashboard', compact('institutionUsersDetails', 'currentInstitution'));
-        
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -114,6 +97,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+      //  $user = User::where('id', $request->id)->first();
+    //    $user->email = $request->username;
+     //   $user->password = $request->password;
+    //    $user->save();
+    //    
     }
 
     /**
@@ -135,19 +123,9 @@ class UserController extends Controller
 
             $this->register($request->all());
 
+        }else{
+            return $validator->errors();
         }
-    }
-
-    public function editClass(Request $request)
-    {
-        // allow admin to edit class 
-        
-        // get the institution id of the current admin
-        $currentInstitutionId = Auth::user()->institution_id;
-        $currentInstitution = Institution::find($currentInstitution);
-        $class = $currentInstitution->classes->class;
-    //    return view();
-
     }
 
     public function deleteClass(Request $request)
@@ -155,6 +133,8 @@ class UserController extends Controller
         // allow admin to delete student
         $class = Classes::where('id', $request->id)->first();
         $class->delete();
-       
+  
     }
+
 }
+

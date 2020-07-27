@@ -41,7 +41,8 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    
+     public function index()
     {
         /*
             getting current admin
@@ -69,6 +70,7 @@ class AdminController extends Controller
         //return dd($institutionUsersDetails);
     }
 
+    
     /**
      * Show the form for creating a new resource.
      *

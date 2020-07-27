@@ -14,8 +14,12 @@ class CreateUseridTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('');
+            $table->integer('institution_id')->unsigned();
+            $table->foreign('institution_id')->references('id')->on('institutions');
+            $table->dropForeign('admin_id');
         });
+
+      
     }
 
     /**
