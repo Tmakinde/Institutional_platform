@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Admin;
+use App\Institution;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -52,8 +53,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'username' => ['required', 'string', 'min:8'],
+            'address' => ['required', 'string', 'min:8', 'confirmed'],
+           
         ]);
     }
 
@@ -65,7 +66,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Institution::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -78,12 +79,45 @@ class RegisterController extends Controller
 
         $validator = $this->validator($input);
         if($validator->passes()){
-            $admin = $this->create($input)->toArray();
-            $admin['link'] = str_random(10);
-            // insert the 
+            $institution = $this->create($input)->toArray();
+            /*
+                get institution details so that it can be insert into database
+            */
+            $institutions_details =  DB::table('institutions')->where( ['username' => $institution['username'], 'password' => $institution['password']])->first();
+
+            $institution['link'] = str_random(10);
+
+            // insert the link inot database ass token
+            DB::table('admins')->insert( ['username' => $institution['username'], 'password' => $institution['password'], 'institution_id' => $institutions_details->id]);
+
+            $admins_details = DB::table('admins')->where( ['username' => $institution['username'], 'password' => $institution['password'], 'institution_id' => $institutions_details->id])->first();
+
+            DB::table('admins_activations')->insert( ['token' => $institution['link'], 'admins_id' =>  $admins_details->id]);
+
+            //send mail
+            //  the blade file is in mail/activation.blade.php
+            Mail::send('Admin.activation', $institution, function($message) use ($institution){
+                $message->to($institution['email']);
+                $message->subject('Tomiway - Activation code');
+            });
+
+            return redirect('admin/login')->with('Success', 'We have sent you an activation code, kindly check your email');
         }
         
         return redirect()->back()->with('Error', $validator->errors());
+    }
+
+    public function adminActivation($token){
+        $check = DB::table('admins_activations')->where('token', $token)->first();
+        if(!is_null($check)){
+
+            $checkadmin = DB::table('admins')->where('id', $check->admins_id)->first();
+            $checkadmin = update(['is_activated' => 1 ]);
+            $check = DB::table('admins_activations')->where('token', $token)->delete();
+            return redirect('admin/login')->with('Success', 'Admin activated successfully');
+
+        }
+        return redirect('admin/login')->with('Error', 'Your token is invalid');
     }
 }
 

@@ -8,7 +8,7 @@ class Institution extends Model
 {
     //
     protected $fillable = [
-        'name', 'email', 'password','address', 'username', 'is'
+        'name', 'email', 'password','address', 'username', 'is_activated',
     ];
 
     protected $hidden = [
@@ -22,6 +22,10 @@ class Institution extends Model
 
     public function users(){
         return $this->hasManyThrough(User::class, Admin::class);
+    }
+
+    public function classes(){
+        return $this->hasMany(Classes::class);
     }
 }
 

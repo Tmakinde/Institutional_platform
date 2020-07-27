@@ -32,4 +32,7 @@ Route::group(['prefix' => 'admin'], function () {
     //Reset Password Routes
     Route::get('/password/reset/{token}','ResetpasswordController@showResetForm')->name('password-reset');
     Route::post('/password/reset','ResetpasswordController@reset')->name('password-update');
+
+    // email confirmation route
+    Route::get('/activation/{token}','Institution\RegisterController@adminActivation')->name('email-confirmation');
 });

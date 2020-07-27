@@ -1,41 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
-use App\Admin;
-use App\Institution;
-use App\User;
-use Gate;
 use Illuminate\Http\Request;
-use GuzzleHttp\Exception\RequestException;
 use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    public function __construct()
-    {
-        $this->middleware('auth:admins');
-    }
-
-    protected function validator(array $data)
-    {
-        $this->validate($request, [
-            'username' => ['required', 'string'],
-            'password' => ['required', 'string'],
-           
-        ]);
-            
-      
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -43,9 +14,16 @@ class AdminController extends Controller
      */
     public function index()
     {
-        /*
-            getting current admin
-        */
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
         $currentAdmin = Auth::user();
         /*
             getting current admin details
@@ -66,27 +44,6 @@ class AdminController extends Controller
        // $institution = Institution::all();
     
         return view('Admin.Dashboard', compact('institutionUsersDetails', 'currentInstitution'));
-        //return dd($institutionUsersDetails);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
-        
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function report($id)
-    {
         
     }
 
@@ -98,7 +55,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**
@@ -109,7 +66,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -118,13 +75,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-    //    $admins = Admin::all();
-        // remember to insert each id into the url
-    //    return view('admin.Admin-Section-edit')->with(
-    //        ['admins' => $admins]
-    //    );
+        //
     }
 
     /**
@@ -134,14 +87,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         //
-    //    $admin = Admin::where('id', $request->id)->first();
-    //    $admin->username = $request->username;
-     //   $admin->password = $request->password;
-    //    $admin->save();
-          
     }
 
     /**
@@ -152,13 +100,6 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-       // $admins = Admins::where('id', $request->id)->first();
-     //   $admins->delete();
-      }
-  
-
-
+        //
+    }
 }
-
-
-

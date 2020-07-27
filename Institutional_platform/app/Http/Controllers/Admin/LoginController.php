@@ -42,11 +42,11 @@ class LoginController extends Controller
     public function authenticate(Request $request){
 
         $credentials = $request->only('username', 'password');
-
+        $checkadmin = DB::table('admins')->where('is_activated',1)->where('username', $request['username'])->where('password', $request['password'])->first();
         /*
             login user
         */
-        if (Auth::guard('admins')->attempt($credentials)){
+        if (Auth::guard('admins')->attempt($credentials) && !is_null($checkadmin)){
             return redirect()->intended(route('dashboard'));
 
         }

@@ -40,4 +40,5 @@ class User extends Authenticatable
     public function admins(){
         return $this->belongsTo(Admin::class ,'admins_id');
     }
+    
 }
