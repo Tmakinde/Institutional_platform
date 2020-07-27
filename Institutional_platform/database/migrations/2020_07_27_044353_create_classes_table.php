@@ -16,7 +16,7 @@ class CreateClassesTable extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('class');
-            $table->integer('institution_id')->onsigned();
+            $table->integer('institution_id')->unsigned();
             $table->foreign('institution_id')->references('id')->on('institutions');
 
         });

@@ -4,6 +4,10 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Admin;
+use App\Classes;
+use App\Institution;
+use Validator;
 
 class UserController extends Controller
 {
@@ -22,6 +26,26 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct(){
+        $this->middleware('guest:admins');
+    }
+    
+    protected function validator(array $data ){
+        return Validator::make($data, [
+
+            'class'=> ['required'], 
+
+        ]);
+    }
+
+    protected function register(array $data ){
+        return Classes::create([
+           'class' => $data['class'],
+
+           'institution_id' => Auth::user()->institution_id,
+        ]);
+    }
+
     public function create()
     {
         $currentAdmin = Auth::user();
@@ -101,5 +125,16 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function addClass(Request $request)
+    {
+        // allow admin to create a new clas that will be register with admin 
+        $validator =$this->validator($request->all());
+        if($validator->passes()){
+
+            $this->register($request->all());
+            
+        }
     }
 }
