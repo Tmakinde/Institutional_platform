@@ -37,8 +37,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function admins(){
-        return $this->belongsTo(Admin::class ,'admins_id');
+    public function classes(){
+        return $this->belongsTo(Classes::class, 'classes_id');
     }
-    
+
+
 }

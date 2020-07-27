@@ -17,4 +17,8 @@ class Classes extends Model
     public function institutions(){
         return $this->belongsTo(Institution::class);
     }
+
+    public function users(){
+        return $this->hasMany(User::class);
+    }
 }

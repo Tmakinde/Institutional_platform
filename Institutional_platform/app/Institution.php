@@ -21,7 +21,7 @@ class Institution extends Model
     }
 
     public function users(){
-        return $this->hasManyThrough(User::class, Admin::class);
+        return $this->hasManyThrough(User::class, Classes::class);
     }
 
     public function classes(){

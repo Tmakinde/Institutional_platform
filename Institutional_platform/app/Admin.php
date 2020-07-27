@@ -24,11 +24,7 @@ class Admin extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    //  protected $guarded = 'Admins';
-
-    public function users(){
-        return $this->hasMany(User::class);
-    }
+    //  protected $guarded = 'Admins'
 
     public function institutions(){
         return $this->belongsTo(Institution::class);

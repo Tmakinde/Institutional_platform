@@ -134,7 +134,27 @@ class UserController extends Controller
         if($validator->passes()){
 
             $this->register($request->all());
-            
+
         }
+    }
+
+    public function editClass(Request $request)
+    {
+        // allow admin to edit class 
+        
+        // get the institution id of the current admin
+        $currentInstitutionId = Auth::user()->institution_id;
+        $currentInstitution = Institution::find($currentInstitution);
+        $class = $currentInstitution->classes->class;
+    //    return view();
+
+    }
+
+    public function deleteClass(Request $request)
+    {
+        // allow admin to delete student
+        $class = Classes::where('id', $request->id)->first();
+        $class->delete();
+       
     }
 }
