@@ -6,7 +6,7 @@
   <meta name="viewport"
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Laurel || Subject</title>
+  <title>Laurel || Admin</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/css/all.css">
   <link rel="stylesheet" href="css/style.css">
@@ -19,46 +19,75 @@
 
 
 <body>
-  <nav class=" navbar navbar-expand-lg fixed-top bg-dark navbar-dark text-right">
+  <nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark text-right">
     <a href="#" class="navbar-brand">Laurel</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="navbar-nav ml-auto">
-          <li class="nav-item  m-auto pl-lg-5">
+          <li class="nav-item m-auto pl-lg-5">
               <a class="nav-link " href="#">Home</a>
           </li>
-          <li class="nav-item m-auto active pl-lg-5">
+          <li class="nav-item m-auto pl-lg-5">
               <a class="nav-link" href="#">Subject</a>
           </li>
-          <li class="nav-item m-auto pl-lg-5">
+          <li class="nav-item m-auto   pl-lg-5">
               <a class="nav-link" href="#">Class</a>
           </li>
           <li class="nav-item m-auto pl-lg-5">
               <a class="nav-link" href="#">Student</a>
           </li>
-          <li class="nav-item m-auto pl-lg-5">
+          <li class="nav-item m-auto active pl-lg-5">
             <a class="nav-link" href="#">Admin</a>
         </li>
         <li class="nav-item m-auto pl-lg-5">
           <a class="nav-link" href="#">Messages<i class="fas fa-bell ml-2"></i></a> 
       </li>
       </ul>
-     
+    
     </div>
   </nav>
 
 
+<div class="container mt-5 pt-5">
+  <table class="table mt-5">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>admin@admin.com</td>
+        <td><button type="button" class="btn btn-primary">Edit</button>
+          <button type="button" class="btn btn-warning">Delete</button>
+        </td>      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>admin@admin.co</td>
+        <td><button type="button" class="btn btn-primary">Edit</button>
+          <button type="button" class="btn btn-warning">Delete</button>
+        </td>      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>admin@admin.com</td>
+        <td><button type="button" class="btn btn-primary">Edit</button>
+          <button type="button" class="btn btn-warning">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-right pt-3"><button type="button" class="btn btn-success">Add Button</button></div>
 
-
-
- <div class="container mt-5 pt-5">
-      <button type="button" class="btn btn-primary">Edit Subject</button>
-      <button type="button" class="btn btn-info">Add Subject</button>
-      <button type="button" class="btn btn-danger">Delete Subject</button>
-
- </div>
+</div>
 
 
 
