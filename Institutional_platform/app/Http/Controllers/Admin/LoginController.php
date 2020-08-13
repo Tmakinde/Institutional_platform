@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\support\Facades\Auth;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use App\Admin;
-
+use DB;
 
 class LoginController extends Controller
 {
@@ -44,7 +44,7 @@ class LoginController extends Controller
         $credentials = $request->only('username', 'password');
         $checkadmin = DB::table('admins')->where('is_activated',1)->where('username', $request['username'])->where('password', $request['password'])->first();
         /*
-            login user
+        *   login user
         */
         if (Auth::guard('admins')->attempt($credentials) && !is_null($checkadmin)){
             return redirect()->intended(route('dashboard'));

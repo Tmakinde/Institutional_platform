@@ -19,9 +19,9 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             if($guard == 'admins'){
-                return redirect('admin/dashboard');
-            }else{
-                return redirect('home');
+                return redirect('admin/');
+            }elseif($guard == 'web'){
+                return redirect('home/');
             }
 
         }

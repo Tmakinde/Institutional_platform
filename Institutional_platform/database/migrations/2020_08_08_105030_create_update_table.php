@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUseridTable extends Migration
+class CreateUpdateTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateUseridTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('institution_id')->unsigned();
-            $table->foreign('institution_id')->references('id')->on('institutions');
-            $table->dropForeign('admin_id');
+        Schema::table('classes', function (Blueprint $table) {
+            
+            $table->timestamps();
         });
-
-      
     }
 
     /**
@@ -29,6 +26,6 @@ class CreateUseridTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('userid');
+        Schema::dropIfExists('update');
     }
 }

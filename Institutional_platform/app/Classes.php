@@ -10,8 +10,8 @@ class Classes extends Model
 {
     
     protected $table = 'classes';
-    protected $fillabels = [
-        'class',
+    protected $fillable = [
+        'class','institution_id',
     ];
 
     public function institutions(){
@@ -20,5 +20,9 @@ class Classes extends Model
 
     public function users(){
         return $this->hasMany(User::class);
+    }
+
+    public function subjects(){
+        return $this->hasMany(Subject::class);
     }
 }

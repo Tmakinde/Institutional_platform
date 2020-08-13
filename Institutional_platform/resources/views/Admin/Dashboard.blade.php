@@ -4,74 +4,81 @@
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
-
-    <title>Oasis CBT | {{$currentInstitution->name}}</title>
-
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-
-    <!-- Custom styles for this template -->
-    <style>
-        body {
-        font-size: .875rem;
-        }
-
-        .feather {
-        width: 16px;
-        height: 16px;
-        vertical-align: text-bottom;
-        }
-
-        .classes {
-          margin-top: 120px;
-        }
-        .card-text {
-          font-size: 20px !important;
-          font-weight: bold;
-        }
-
-    </style>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{{ url('css/sign-in-page/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url('css/sign-in-page/css/css/all.css') }}">
+  
+</head>
 
   <body>
-  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-    <a class="navbar-brand" href="{{route('dashboard')}}">{{$currentInstitution->name}}</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link active" href="#">Dashboard <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Results</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Students</a>
-            </li>
-           
-            <li class="nav-item">
-            <a class="nav-link" href="#">Admins Section</a>
-            </li>
-           
-            </ul>
-            <span class="navbar-text">
-            <a class="nav-link" href="{{route('admin-logout')}}">Sign out</a>
-            </span>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark text-right">
+    <a href="{{route('dashboard')}}" class="navbar-brand">{{$currentInstitution->name}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item m-auto pl-lg-5">
+              <a class="nav-link " href="{{route('dashboard')}}">Dashboard</a>
+          </li>
+          <li class="nav-item m-auto pl-lg-5">
+              <a class="nav-link" href="#">Subject</a>
+          </li>
+          <li class="nav-item m-auto pl-lg-5">
+              <a class="nav-link" href="{{route('Class-Section')}}">Class</a>
+          </li>
+          <li class="nav-item m-auto pl-lg-5">
+              <a class="nav-link" href="#">Student</a>
+          </li>
 
-   <div class = "jumbotron">
-        <h3>{{$institutionUsersDetails->name}}</h3>
-   </div>
+          <li class="nav-item m-auto pl-lg-5">
+            <a class="nav-link" href="{{route('Admin-Section')}}">Admin</a>
+          </li>
+          <li class="nav-item m-auto pl-lg-5">
+              <a class="nav-link" href="#">Results</a>
+          </li>
+          <li class="nav-item m-auto pl-lg-5">
+          <a class="nav-link" href="#">Messages<i class="fas fa-bell ml-2"></i></a> 
+          </li>
+          <li class="nav-item m-auto pl-lg-5">
+          <a class="nav-link" href="{{route('admin-logout')}}">Sign out</a> 
+          </li>
+      </ul>
+     
+    </div>
+  </nav>
+  
+
+  <div class = "jumbotron">
+      <h3>{{$currentInstitution->name}}</h3>
+  </div>
+
+  <div id="myCarousel" class="carousel slide"> 
+    <!-- Carousel indicators --> 
+    <ol class="carousel-indicators"> 
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li> 
+      <li data-target="#myCarousel" data-slide-to="1"></li> 
+      <li data-target="#myCarousel" data-slide-to="2"></li> 
+    </ol>
+    <!-- Carousel items --> 
+    <div class="carousel-inner"> 
+      <div class="item active"> 
+        <img src="{{URL::asset('img/paris1.jpg')}}" alt="First slide"> </div> 
+        <div class="item"> <img src="{{URL::asset('img/paris.jpg')}}" alt="Second slide"> </div> 
+        <div class="item"> <img src="{{URL::asset('img/paris2.jpg')}}" alt="Third slide"> </div> 
+      </div>
+      <!-- Carousel nav --> 
+      <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a> 
+      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a> 
+  </div>
+
+  <script type="text/javascript" src="{{asset('js/sign-in-page/js/jquery-3.5.1.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('js/sign-in-page/js//bootstrap.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
   </body>
 </html>

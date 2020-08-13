@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use App\Admin;
 use App\Institution;
+use Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use DB;
@@ -22,7 +24,7 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
+    
     use RegistersUsers;
 
     /**
@@ -37,6 +39,7 @@ class RegisterController extends Controller
      *
      * @return void
      */
+    
     public function __construct()
     {
         $this->middleware('guest:admins');
@@ -53,8 +56,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'address' => ['required', 'string', 'min:8', 'confirmed'],
-           
+            'password' => ['required', 'string', 'min:8',],
+            'username' => ['required', 'string'],
         ]);
     }
 
@@ -74,6 +77,11 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function showRegisterForm(){
+        
+        return view('Admin.Register');
+    }
+
     public function register(Request $request){
         $input = $request->all();
 
@@ -81,17 +89,17 @@ class RegisterController extends Controller
         if($validator->passes()){
             $institution = $this->create($input)->toArray();
             /*
-                get institution details so that it can be insert into database
+                get institution details so that has beeninsert into database
             */
-            $institutions_details =  DB::table('institutions')->where( ['username' => $institution['username'], 'password' => $institution['password']])->first();
+            $institutions_details =  DB::table('institutions')->where( ['username' => $institution['username']])->first();
 
             $institution['link'] = str_random(10);
 
-            // insert the link inot database ass token
-            DB::table('admins')->insert( ['username' => $institution['username'], 'password' => $institution['password'], 'institution_id' => $institutions_details->id]);
+            $hashpassword = Hash::make($input['password']);
+            DB::table('admins')->insert( ['username' => $institution['username'],'password'=>$hashpassword, 'institution_id' => $institutions_details->id]);
 
-            $admins_details = DB::table('admins')->where( ['username' => $institution['username'], 'password' => $institution['password'], 'institution_id' => $institutions_details->id])->first();
-
+            $admins_details = DB::table('admins')->where( ['username' => $institution['username'],'institution_id' => $institutions_details->id])->first();
+            // insert the link into database ass token
             DB::table('admins_activations')->insert( ['token' => $institution['link'], 'admins_id' =>  $admins_details->id]);
 
             //send mail
@@ -103,9 +111,12 @@ class RegisterController extends Controller
 
             return redirect('admin/login')->with('Success', 'We have sent you an activation code, kindly check your email');
         }
+        return redirect()->back()->withErrors($validator);
         
-        return redirect()->back()->with('Error', $validator->errors());
+
     }
+    
+    
 
     public function adminActivation($token){
         $check = DB::table('admins_activations')->where('token', $token)->first();
@@ -119,6 +130,7 @@ class RegisterController extends Controller
         }
         return redirect('admin/login')->with('Error', 'Your token is invalid');
     }
+
 }
 
 

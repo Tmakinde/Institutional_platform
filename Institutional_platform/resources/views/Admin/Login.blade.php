@@ -1,101 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
 
-    <title>Oasis CBT | Admin Login Page</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Laurel|| Sign-in</title>
+  <link rel="stylesheet" href="{{ url('css/sign-in-page/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url('css/sign-in-page/css/css/all.css') }}">
+  
+</head>
 
+<style>
+.form-signin{
+  max-width:400px;
+ border: 1px solid grey;
+border-radius: 20px;
+background-color:whitesmoke;
+}
+</style>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
-    <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
-    <style>
-        html,
-        body {
-        height: 100%;
-        }
+<body>
 
-        body {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-align: center;
-        align-items: center;
-        padding-top: 40px;
-        padding-bottom: 40px;
-        background-color: #f5f5f5;
-        }
-
-        .form-signin {
-        width: 100%;
-        max-width: 330px;
-        padding: 15px;
-        margin: auto;
-        }
-        .form-signin .checkbox {
-        font-weight: 400;
-        }
-        .form-signin .form-control {
-        position: relative;
-        box-sizing: border-box;
-        height: auto;
-        padding: 10px;
-        font-size: 16px;
-        }
-        .form-signin .form-control:focus {
-        z-index: 2;
-        }
-        .form-signin input[type="text"] {
-        margin-bottom: -1px;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-        }
-        .form-signin input[type="password"] {
-        margin-bottom: 10px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        }
-    </style>
-  </head>
-
-  <body class="text-center">
-    <form class="form-signin" action="{{route('admin-login')}}" method="post">
-      {{-- <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> --}}
-      <h1 class="h3 mb-3 font-weight-normal">Admin Login</h1>
-
-        @csrf
-
-        @if ($errors->any())
-                {{-- @foreach ($errors as $error) --}}
-                    <strong style="color:red">{{$errors}}</strong>
-                {{-- @endforeach --}}
-        @endif
-
-        <label for="username">Username:</label>
-        <input type="text" id="username" class="form-control" name="username" placeholder="Username" required><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required><br>
-        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
-        <p class="mt-5 mb-3 text-muted">&copy; {{date('Y')}}</p>
-    </form>
-  </body>
+  
+  
+<div class="container pt-5 px-3 mx-auto">
+  
+ 
+  <form class="form-signin p-3 mx-auto" method = 'post' action = "{{route('admin-login')}}">
+    @csrf
+    @if ($errors->any())
+    
+    @foreach ($errors->all() as $error)
+      <h6 class = 'text-danger' style = "float:center;margin-left:35px;margin-bottom:10px">{{$error}}</h6>
+    @endforeach
+   
+  @endif
+    <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+    <label for="inputEmail" class="sr-only">Username</label>
+    <input type="text" id="inputEmail" class="form-control my-4" value = "<?= old('username'); ?>" name ='username' placeholder="Username"  autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" value = "<?= old('password'); ?>" placeholder="Password" name ='password'>
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <a href = "{{route('password-request')}}" class = 'mt-2'>forgot password ?</a>
+    <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+  </form>
+  
+</div>
+  <script type="text/javascript" src="{{asset('js/sign-in-page/js/jquery-3.5.1.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('js/sign-in-page/js/script.js')}}"></script>
+  
+</body>
 </html>
-
-        {{-- Admin Login Page --}}
-
-        <!-- <form action="{{}}" method="post">
-            {{-- @csrf --}}
-
-            {{-- @foreach ($error as $err)
-                {{$err}}
-            @endforeach<br> --}}
-            Username: <input type="text" name="username"><br>
-            Password: <input type="password" name="password"><br>
-
-            <input type="submit" value="Submit Details">
-        </form> -->
-

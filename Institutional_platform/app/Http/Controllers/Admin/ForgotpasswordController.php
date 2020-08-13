@@ -7,8 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Auth;
 use Password;
+use Illuminate\Auth\Passwords\CanResetPassword;
 
-class ForgotpaswordController extends Controller
+class ForgotpasswordController extends Controller
 {
     use SendsPasswordResetEmails;
 
@@ -16,17 +17,19 @@ class ForgotpaswordController extends Controller
         $this->middleware('guest:admins');
     }
     // to show the form where admin will input the email for the password to be reset
-    public function showLinkForm(){
+    
+    public function showLinkRequestForm(){
+
         return view('auth.passwords.email', [
             'title' => 'Admin Password Reset',
             'passwordEmailRoute' => 'admin.password-email'
         ]);
-    
+
     }
     // broker will use the password settings for admins guard in auth.php file
     public function broker(){
         
-        return Password::broker('admins');
+        return Password::broker('institutions');
     
     }
 

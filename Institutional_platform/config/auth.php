@@ -81,6 +81,11 @@ return [
             'model' => App\Admin::class,
         ],
 
+        'institutions' => [
+            'driver' => 'eloquent',
+            'model' => App\Institution::class,
+        ],
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -109,8 +114,8 @@ return [
             'expire' => 60,
         ],
 
-        'admins' => [
-            'provider' => 'admins',
+        'institutions' => [
+            'provider' => "institutions",
             'table' => 'password_resets',
             'expire' => 60,
         ],

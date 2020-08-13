@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Admin;
 use App\Institution;
 use App\User;
+use Hash;
 use Gate;
 use Illuminate\Http\Request;
 use GuzzleHttp\Exception\RequestException;
@@ -42,7 +43,24 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-     public function index()
+    public function index()
+    {
+        $currentAdmin = Auth::user();
+        /*
+            getting current admin details
+        */
+        $Admin = Admin::where('id', $currentAdmin->id)->first();
+        /*
+            getting current admin institution id
+        */
+        $adminInstitutionId = $Admin->institution_id;
+        /*
+            getting current admin institution details
+        */
+        $currentInstitution = Institution::where('id', $adminInstitutionId)->first();
+        return view('Admin.Dashboard',compact( 'currentInstitution'));
+    }
+     public function Admin()
     {
         /*
             getting current admin
@@ -61,13 +79,14 @@ class AdminController extends Controller
         */
         $currentInstitution = Institution::where('id', $adminInstitutionId)->first();
         /*
-            getting users using the current admin under the admin institution
+            getting admins under current institution
         */
-        $institutionUsersDetails = $currentInstitution->users()->first();
+        $currentInstitutionAdmins = $currentInstitution->admins;
+       // $institutionUsersDetails = $currentInstitution->users()->first();
        // $institution = Institution::all();
     
-        return view('Admin.Dashboard', compact('institutionUsersDetails', 'currentInstitution'));
-        //return dd($institutionUsersDetails);
+        return view('Admin.Admin', compact('currentInstitutionAdmins', 'currentInstitution'));
+      //  return dd($currentInstitutionAdmins);
     }
 
     
@@ -78,7 +97,13 @@ class AdminController extends Controller
      */
     public function create(Request $request)
     {
-        
+        // create new admin using the institution id of the current admin
+        $newAdmin = new Admin;
+        $newAdmin->username = $request->username;
+        $newAdmin->password = Hash::make($request->password);
+        $newAdmin->institution_id = Auth::user()->institution_id;
+        $newAdmin->save();
+        return redirect()->to('/admin/AdminSection');
     }
 
     /**
@@ -139,11 +164,11 @@ class AdminController extends Controller
     public function update(Request $request)
     {
         //
-    //    $admin = Admin::where('id', $request->id)->first();
-    //    $admin->username = $request->username;
+     //   $admin = Admin::where('id', $request->id)->first();
+     //   $admin->username = $request->username;
      //   $admin->password = $request->password;
-    //    $admin->save();
-          
+     //   $admin->save();
+        dd($request->id);
     }
 
     /**
@@ -152,13 +177,13 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-       // $admins = Admins::where('id', $request->id)->first();
-     //   $admins->delete();
+        $admins = Admin::where('id', $request->id)->first();
+        $admins->delete();
+        return redirect()->to('/admin/AdminSection');
       }
   
-
 
 }
 
