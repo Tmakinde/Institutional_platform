@@ -11,9 +11,15 @@ use App\User;
 use App\Classes;
 use App\Institution;
 use App\Subject;
+use App\Topic;
+use Illuminate\support\Facades\Storage;
 class HomeController extends Controller
 {
     //
+    function __construct(){
+        $this->middleware('auth:web');
+    }
+
     public function index(){
         $currentUser = Auth::user();
         $currentInstitution = Institution::where('id', $currentUser->institution_id)->first();
@@ -58,4 +64,52 @@ class HomeController extends Controller
         return view('User.subject', compact('currentInstitution','userSubjects'));
     }
 
+    public function getTopic(Request $request)
+    {
+        $currentUser = User::where('id', Auth::user()->id)->first();
+        $currentInstitution = Institution::where('id', $currentUser->institution_id)->first();
+        // to get subject topics
+        $subjectId = $request->id;
+        $currentSubject = Subject::where('id', $subjectId)->first();
+        $topics = $currentSubject->topics;
+      
+        return view('User.topic')->with([
+            'topics'=>$topics,
+            'currentSubject'=>$currentSubject,
+            'currentInstitution'=>$currentInstitution,
+        ]);
+    }
+    
+    public function viewTopic(Request $request)
+    {
+        
+        $topic = Topic::where('Title',$request->title)->first();
+        $topicTitle = $topic->Title;
+        $topicContent = $topic->content;
+    /*    if($topic->filename != null){
+            $topicFile = $topic->filename;
+            $file = Storage::disk('files/'.$topicFile.'/'.$topicFile);
+            
+        }*/
+        return response()->json([
+            'topicTitle'=>$topicTitle,
+            'topicContent'=>$topicContent, 
+        ]);
+        
+    }
+    public function downloadfile(Request $request)
+    {
+        $topic = Topic::where('Title',$request->title)->first();
+        $topicTitle = $topic->Title;
+        $topicContent = $topic->content;
+        $file = null;
+        if($topic->filename != null){
+            $topicFile = $topic->filename;
+            $file = storage_path('app\files'."\\".$topicFile."\\".$topicFile);
+            return response()->download($file);
+            
+         //   dd($file);
+        }
+        return response()->json('No file');
+    }
 }

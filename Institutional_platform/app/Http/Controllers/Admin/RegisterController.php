@@ -108,16 +108,13 @@ class RegisterController extends Controller
                 $message->to($institution['email']);
                 $message->subject('Tomiway - Activation code');
             });
-
+        //    dd($institution['email']);
             return redirect('admin/login')->with('Success', 'We have sent you an activation code, kindly check your email');
         }
         return redirect()->back()->withErrors($validator);
-        
-
+      
     }
-    
-    
-
+   
     public function adminActivation($token){
         $check = DB::table('admins_activations')->where('token', $token)->first();
         if(!is_null($check)){

@@ -56,7 +56,9 @@
 
    <body id ="body">
    <div class="container mt-5 pt-5" >
-    <h6 style="background-color:green;border-radius: 10px; width:100px" id ="result"></h6>
+    <div class = "alert alert-success" id = "alert">
+      <h6 id ="result"></h6>
+    </div>
    <h4 class ="well mb-4">{{$currentClass->class}}</h4>
    <!--action = "{{route('Add-Student', ['id' => $currentClass->id])}}" method = "post"-->
     <form id ="AddForm" >
@@ -74,7 +76,7 @@
     <thead>
       <tr>
         <th scope="col" style = "text-align:center">Student Name</th>
-        <th scope="col" style = "text-align:center">Assign Subject</th>
+      
         <th scope="col" style = "text-align:center">Action</th>
       </tr>
     </thead>
@@ -84,22 +86,29 @@
           <td id = "usernameColumn" style = "text-align:center"><h6>{{$Students->name}}</h6></td>   
           
           <td >
-            <form method = 'post' id ="deleteForm" >
-            <input type ="hidden" id ="hiddenValue" value = "{{$Students->id}}">
+            <form class = "deleteForm" >
             @csrf
-            <button class="btn btn-danger" type="submit">Delete</button>
+            
+            <input type ="hidden" id ="hiddenValue" value = "{{$Students->id}}">
+            
+            <button type ="submit" class="btn btn-danger">Delete</button>
             </form>
           </td>
         </tr>
     @endforeach
+
     </tbody>
     </table>
+    
   <script>
+  //  var studentList = {{json_encode($listStudents)}};
+  //  console.log(studentList['name']); 
     var currentClass = {{json_encode($currentClass->id)}};
     var currentInstitution = {{json_encode($currentInstitution->id)}};
     var studentId = {{json_encode($currentInstitution->id)}};
     var newArray = {'id':currentClass};
     jQuery(document).ready(function(){
+      $('#alert').hide();
       function load_data(){
           $.ajax({
           url: '{{route("Student-Section")}}' + '?id=' + newArray['id'],
@@ -112,9 +121,10 @@
           console.log(jqXHR);
             console.log(textStatus);
             console.log(errorThrown);
+         }
+        });
         }
-          });
-        }
+
       jQuery('#AddForm').submit(function(e){
         e.preventDefault();
         $.ajaxSetup({
@@ -137,6 +147,7 @@
         
         success:function(data){
           load_data();
+          $('#alert').show();
           $('#result').text(data.Success);
             
         },
@@ -148,43 +159,50 @@
         //    console.log(errorThrown);
         }
         });
-      });
-        jQuery('#deleteForm').submit(function(e){
-          e.preventDefault();
-          $.ajaxSetup({
-              headers : {
-                  'X-CSRF-TOKEN':$('meta[name = "_token"]').attr('content')
-              }
-          });
-        //  var action = $(this).attr('action');
+      })
+    
+      $('.deleteForm').on('submit',function(event){
+          event.preventDefault();
+          var action = $(this).attr('action');
+        //  $tr = $(this).closest('tr');
+       //   var data = $tr.children('td').map(function(){
+       //     return $(this).text();
+       //   }).get()
+        //  console.log(data);
+
           console.log($('#hiddenValue').val());
           jQuery.ajax({
           url: "{{route('Delete-Student')}}" +'?id=' + $('#hiddenValue').val(),
           type: "POST",
+          data:{
+            "_token":"{{ csrf_token() }}",
+            
+          },
           success:function(data){
             load_data();
+            $('#alert').show();
             $('#result').text(data.Success);  
           },
           error:function(data){
-          //  load_data();
+            load_data();
             console.log(data);
-          //  console.log(jqXHR);
-          //    console.log(textStatus);
-          //    console.log(errorThrown);
+            console.log(jqXHR);
+              console.log(textStatus);
+              console.log(errorThrown);
+          
           }
           })
-      });
+        });
+      });  
     //  jQuery(document).ajaxStop(function(){
     //    window.location.reload();
     //  })
-      
-        
-    
-    })
+
+  
   </script> 
     <script type="text/javascript" src="{{asset('js/sign-in-page/js/jquery-3.5.1.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/sign-in-page/js//bootstrap.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
+    
     </div>
   </body>
 </html>

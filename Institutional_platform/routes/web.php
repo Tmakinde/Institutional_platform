@@ -12,14 +12,19 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/login', 'Auth\LoginController@showLoginForm');
+Route::post('/login', 'Auth\LoginController@login')->name('login');
+Route::post('/Logout', 'Auth\LoginController@logout')->name('logout');
 
-
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/Logout', 'Auth\LoginController@logout')->name('Logout');
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::post('/MySubject', 'HomeController@createUserSubject')->name('User-Subject');
 Route::get('/Mycourses', 'HomeController@displayUserSubjects')->name('User-Courses');
+Route::get('/topics', 'HomeController@getTopic')->name('topics');
+Route::get('/ViewTopic', 'HomeController@viewTopic')->name('Get-Topic');
+Route::get('/downloadfile', 'HomeController@downloadfile')->name('download-file');
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/register', 'Admin\RegisterController@showRegisterForm')->name('admin-register');
@@ -52,6 +57,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/Add-Subject', 'Admin\UserController@createSubject')->name('Add-Subject');
     Route::post('/Delete-Subject', 'Admin\UserController@deleteSubject')->name('Delete-Subject');
    
+    // Topic CRUD
+    Route::get('/TopicSection', 'Admin\UserController@Topic')->name('Topic-Section');
+    
+    Route::post('/Add-Topic', 'Admin\UserController@createTopic')->name('Add-Topic');
+    
     //Forgot Password Routes
     Route::get('/password/reset','Admin\ForgotpasswordController@showLinkRequestForm')->name('password-request');
     Route::post('/password/email','Admin\ForgotpasswordController@sendResetLinkEmail')->name('admin.password-email');

@@ -28,7 +28,7 @@
               <a class="nav-link " href="{{route('home')}}">Dashboard</a>
           </li>
           <li class="nav-item m-auto pl-lg-5">
-              <a class="nav-link" href="#">My Courses</a>
+              <a class="nav-link" href="{{route('User-Courses')}}">My Courses</a>
           </li>
           <li class="nav-item m-auto pl-lg-5">
               <a class="nav-link" href="#">Results</a>
@@ -53,7 +53,7 @@
                 <ul>
                 @foreach($userSubjects as $Subjects)
                     
-                <li> <div class ="mb-3"> <b>{{$Subjects->Subjectname}}</b> </div></li>
+                <li> <div class ="mb-3"><a href ="{{route('topics', ['id' => $Subjects->id])}}"> <b>{{$Subjects->Subjectname}}</b> </a> </div></li>
                     
                 @endforeach
                 </ul>

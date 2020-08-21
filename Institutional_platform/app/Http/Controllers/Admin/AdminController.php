@@ -102,6 +102,7 @@ class AdminController extends Controller
         $newAdmin->username = $request->username;
         $newAdmin->password = Hash::make($request->password);
         $newAdmin->institution_id = Auth::user()->institution_id;
+        $newAdmin->is_activated = 1;
         $newAdmin->save();
         return redirect()->to('/admin/AdminSection');
     }
@@ -145,14 +146,7 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
-    {
-    //    $admins = Admin::all();
-        // remember to insert each id into the url
-    //    return view('admin.Admin-Section-edit')->with(
-    //        ['admins' => $admins]
-    //    );
-    }
+    
 
     /**
      * Update the specified resource in storage.

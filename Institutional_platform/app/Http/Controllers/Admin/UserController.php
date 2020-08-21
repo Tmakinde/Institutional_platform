@@ -14,7 +14,7 @@ use App\Subject;
 use App\Topic;
 use Hash;
 use Validator;
-
+use Illuminate\support\Facades\Storage;
 class UserController extends Controller
 {
     /**
@@ -59,6 +59,12 @@ class UserController extends Controller
         $currentClass = Classes::where('id',$request->id)->where('institution_id', Auth::user()->institution_id)->first();
         $listStudents = $currentClass->users;
 
+      //  return response()->json([
+        //    'currentClass' => "$currentClass",
+          //  'listStudents'=>"$listStudents",
+         //   '$currentInstitution'=>
+     //   ]);
+
         return view('Admin.User')->with([
             'currentClass'=>$currentClass,
             'listStudents'=>$listStudents,
@@ -101,7 +107,16 @@ class UserController extends Controller
         ]);
     }
         
+    public function listUser(Request $request)
+    {
+        $currentClass = Classes::where('id',$request->id)->where('institution_id', Auth::user()->institution_id)->first();
+        $listStudents = $currentClass->users;
+        return response()->json([
 
+            'listStudents' => '$listStudents',
+
+        ]);
+    }
     public function editUser($id)
     {
         $currentAdmin = Auth::user();
@@ -119,7 +134,11 @@ class UserController extends Controller
         $institutionUsersDetails = $currentInstitution->users()->first();
        // $institution = Institution::all();
     
-        return view('Admin.Dashboard', compact('institutionUsersDetails', 'currentInstitution'));
+      //  return view('Admin.Dashboard', compact('institutionUsersDetails', 'currentInstitution'));
+        return response()->json([
+            'institutionUsersDetails' => "$institutionUsersDetails",
+            'currentInstitution' => '$currentInstitution',
+        ]);
     }
 
     /**
@@ -190,11 +209,14 @@ class UserController extends Controller
         $currentInstitution = Institution::where('id', $currentAdminInstitutionId)->first();
         $currentClass = Classes::where('id', $request->id)->first();
         $subjects = $currentClass->subjects;
+        
+        
         return view('Admin.Subject')->with([
             'subjects'=>$subjects,
             'currentInstitution'=>$currentInstitution,
             'currentClass'=>$currentClass,
         ]);
+        
     }
 
     public function createSubject(Request $request)
@@ -214,14 +236,45 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function Topic(Request $request)
+    {
+        $currentAdminInstitutionId = Auth::user()->institution_id;
+        $currentInstitution = Institution::where('id', $currentAdminInstitutionId)->first();
+        $subject = Subject::where('id',$request->id)->first();
+        $topics = $subject->topics; //get topic under the subject
+       // dd($topic);
+        return view('Admin.Topic', compact('currentInstitution', 'subject', 'topics'));
+    }
+
     public function createTopic(Request $request)
     {
-        $subject = new Subject;
-        $subject->Subjectname = $request->subjectName;
-        $subject->classes_id = $request->id;
-        $subject->save();
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+        
+        $topic = new Topic;
+        $topic->Title = $request->title;
+        $topic->content = $request->content;
+        $topic->subject_id = $request->id;
+        if($request->has('file') && $request->file('file')->isvalid()){
+            $file = $request->file('file');
+        
+            $filename = time().$file->getClientOriginalName();
+            Storage::disk('local')->putFileAs(
+                'files/'.$filename,
+                $file,
+                $filename
+            );
+           // $request->file->move(public_path('uploads'), $filename);
+            $topic->filename = $filename;
+        }
+        $topic->save();
         return redirect()->back();
+
     }
+
+    
 }
 
    

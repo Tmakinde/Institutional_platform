@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
-    //
+    
     public function subjects(){
-        $this->belongsTo(SUbject::class);
+       return  $this->belongsTo(Subject::class);
     }
+
 }

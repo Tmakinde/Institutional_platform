@@ -37,6 +37,16 @@ background-color:whitesmoke;
     @endforeach
    
   @endif
+  @if($message = Session::get('Success'))
+    <div class ="alert alert-success">
+      {{$message}}
+    </div>
+  @endif
+  @if($message = Session::get('Error'))
+    <div class ="alert alert-success">
+      {{$message}}
+    </div>
+  @endif
     <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
     <label for="inputEmail" class="sr-only">Username</label>

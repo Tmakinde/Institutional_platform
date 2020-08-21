@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject extends Model
 {
-    //
+    
     public function users(){
         return  $this->belongsToMany(User::class);
     }
@@ -16,7 +16,8 @@ class Subject extends Model
     }
 
     public function topics(){
-        $this->hasMany(Topic::class);
+        return  $this->hasMany(Topic::class, 'subject_id');
     }
+
 }
 

@@ -15,20 +15,11 @@ class LoginController extends Controller
     use ThrottlesLogins;
     // number of attempts
 
-    public $maxAttempts = 5;
+    public $maxAttempts = 3;
    
     // number of minute to lock login
 
-    public $lockMinutes = 3;
-
-   // protected function hasTooManyLoginAttempts(Request $request){
-   //     $maxAttempts = 3;
-    //    $lockMinutes = 3;
-//
-      //  return $this->limiter()->tooManyAttempts(
-      //      $this->throttleKey($request), $maxAttempts, $lockMinutes
-    //    );
- //   }
+    public $decayMinutes = 5000;
 
     public function __construct(){
         $this->middleware('guest:admins')->except('logout');
@@ -78,5 +69,6 @@ class LoginController extends Controller
     public function username(){
         return 'username';
     }
+    
 }
 

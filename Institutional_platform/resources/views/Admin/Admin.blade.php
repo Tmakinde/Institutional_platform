@@ -69,9 +69,7 @@
         @foreach ($currentInstitutionAdmins as $Admins)
         <tr>
           <td id = "usernameColumn">{{ $Admins->username }}</td>
-          
-          <td><button type="button" class="btn btn-primary"  data-toggle="modal" id = "editButton" data-target="#myModal1">Edit</button>
-
+          <td id = "passwordColumn" style = "display:none">{{ $Admins->password }}</td>
           <form method = 'post' action = "{{route('Delete-Admin', ['id' => $Admins->id])}}">
           @csrf
           <button class="btn btn-warning" type="submit">Delete</button>
@@ -152,9 +150,12 @@
     var i = 0;
     
     $('tr > td >button#editButton').click(function(){
-      var username = $('#usernameColumn').html();
-      
-      alert(username);
+      $tr = $(this).closest('tr');
+      var Value = $tr.children('td').map(function(){
+        return $(this).text()
+      }).get()
+      $('#editUsername').val(Value[0]);
+      $('#editPassword').val($('#passwordColumn').text());
     })
        // get username
     // $('#editUsername').val(username); // insert username
@@ -167,7 +168,7 @@
     <script type="text/javascript" src="{{asset('js/sign-in-page/js/jquery-3.5.1.min.js')}}"></script>
     
     <script type="text/javascript" src="{{asset('js/sign-in-page/js//bootstrap.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
+    
   </body>
   
 </html>
