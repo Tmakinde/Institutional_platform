@@ -1,4 +1,5 @@
 #Project Aim
+
 This is an online educational platform for schools.
 It's purpose is to be able to connect different schools.or tutotrial.centres on a single platform.
 
@@ -6,6 +7,7 @@ It's purpose is to be able to connect different schools.or tutotrial.centres on 
 users are schools, tutorial centre and student
 
 #Schools(admin) wil register and they will be able to:
+
 ** Create class
 ** Add students
 ** Create Subject and add its Topics
@@ -13,6 +15,7 @@ users are schools, tutorial centre and student
 ** Participation in online CBT test for every institution on the platform.
 
 #Students of each institution will be able to:
+
 ** Choose the subjects they want
 ** Have access to various topics and its assigned questions.
 ** Submission of exercise.
@@ -25,6 +28,7 @@ Bootstrap is used for the frontend
 #How to run this on your system
 
 #requirement
+
 php version 7.2 upward
 install composer
 #setup
