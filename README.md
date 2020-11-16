@@ -67,4 +67,8 @@ run php artisan migrate
 run php artisan serve
 </pre>
 
-<b>Status In progress</b>
+<hr>
+
+<b>Status</b>
+
+In Progress
