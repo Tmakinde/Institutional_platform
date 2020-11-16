@@ -1,13 +1,16 @@
 <b>Project Aim</b>
 
 This is an online educational platform for schools.
-It's purpose is to be able to connect different schools.or tutotrial.centres on a single platform.
+It's purpose is to be able to connect different schools or tutorial centres on a single platform.
+
+<hr>
 
 <b>What will users be able to do?</b><br>
 
 <b>Users are schools, tutorial centre and student.</b>
 
 Schools(admin) will be able to register and they will be able to:<br>
+
 <pre>
 ** Create class
 ** Add students
@@ -24,12 +27,13 @@ Schools(admin) will be able to register and they will be able to:<br>
 ** Submission of exercise.
 </pre>
 
+<hr>
+
 <b>Framework used</b>
 
 The framework used for this project is laravel
 Bootstrap is used for the frontend
 
-<b>How to run this on your system</b>
 <hr>
 
 <b>requirement</b>
@@ -39,7 +43,10 @@ php version 7.2 upward
 install composer
 </pre>
 
+<hr>
+
 <b>setup</b>
+
 <pre>
 fork this project
 
