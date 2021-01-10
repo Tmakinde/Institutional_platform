@@ -369,6 +369,7 @@ class UserController extends Controller
         if($question->save()){
             $questionsData = DB::table('questions')->where('answer', $question->answer)->where('topic_id', $request->topic_id)->first(); 
         }
+        $countquestions = DB::table('questions')->where('topic_id', $request->topic_id)->count();
      //   dd($questionsData);
 
         // save option in option table
@@ -382,6 +383,7 @@ class UserController extends Controller
         
         return response()->json([
             'success' => "sucessfully added",
+            'totalquestions' => $countquestions,
         ]);
     }
    
@@ -490,10 +492,6 @@ class UserController extends Controller
             return abort('500');
         }
 
-        
-            
-        
-        
        
        
     }

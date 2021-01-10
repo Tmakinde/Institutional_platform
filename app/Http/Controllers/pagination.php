@@ -15,7 +15,9 @@ class pagination extends Controller
     }
 
     public function getCurrent(){
+
         return $this->current;
+        
     }
 
     public function setCurrent($setCurrent){

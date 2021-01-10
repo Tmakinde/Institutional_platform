@@ -32,9 +32,9 @@
                 </div>              
               </td>
             </tr> 
-            <span style ="display:none;">  {{$i++}}</span>
+            <span class = "questioncounter" style ="display:none;">  {{$i++}}</span>
           @endforeach       
-                   
+            <span class ="totalquestionnumber" style ="display:none;"></span>
           </table>
         </td>
         <td style ="display:block" id = 'questionColumn'>
@@ -51,7 +51,7 @@
               <form class = "UpdateForm" enctype = "multipart/form-data" style ="border-width:1" value ="">
                   @csrf
                   <label>Question Content</label><br>
-                  <textarea class="summernote" style ="min-width:500px;height:300px;border-radius: 15px" name = "content" ></textarea><br>
+                  <textarea class="summernote" id="editContent" style ="min-width:500px;height:300px;border-radius: 15px" name = "content" ></textarea><br>
                   <hr>
                   <label>Input Question Option from A-D</label><br>
                   <label>A</label><input style ="width:50%;" type = "text" id = "editoption_A" name = "option_A" placeholder ="Option A" required><br>
@@ -120,52 +120,56 @@
     <script>
     // summernote
     $('.summernote').summernote({
-      height: 200,
-      minHeight: null,             // set minimum height of editor
-      maxHeight: 150, 
-      maxWidth: 170,             // set maximum height of editor
-      focus: true ,
-      maximumImageFileSize: 512000,
-      placeholder:'Write your text here ... Click the picture you upload to get options to resize',
-      imageAttributes:{
-          icon:'<i class="note-icon-pencil"/>',
-          removeEmpty:false, // true = remove attributes | false = leave empty if present
-          disableUpload: false // true = don't display Upload Options | Display Upload Options
-      },
-      toolbar: [
-          // [groupName, [list of button]]
-          ['style', ['bold', 'italic', 'underline', 'clear']],
-          ['font', ['strikethrough', 'superscript', 'subscript']],
-          ['fontsize', ['fontsize']],
-          ['color', ['color']],
-          ['para', ['ul', 'ol', 'paragraph']],
-          ['height', ['height']],
-          ['insert', ['link', 'picture',]],
-          ['view', ['fullscreen', 'codeview', 'help']],
-      ],
-      popover: {
-          image: [
-              ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
-              ['float', ['floatLeft', 'floatRight', 'floatNone']],
-              ['remove', ['removeMedia']]
-          ],
-          link: [
-              ['link', ['linkDialogShow', 'unlink']]
-          ],
-          
-          air: [
-              ['color', ['color']],
-              ['font', ['bold', 'underline', 'clear']],
-              ['para', ['ul', 'paragraph']],
-              ['table', ['table']],
-              ['insert', ['link', 'picture']]
-          ]
-      },
-    });
-
-    //end of summernote
+        height: 200,
+        minHeight: null,             // set minimum height of editor
+        maxHeight: 150, 
+        maxWidth: 170,             // set maximum height of editor
+        focus: true ,
+        maximumImageFileSize: 512000,
+        placeholder:'Write your text here ... Click the picture you upload to get options to resize',
+        imageAttributes:{
+            icon:'<i class="note-icon-pencil"/>',
+            removeEmpty:false, // true = remove attributes | false = leave empty if present
+            disableUpload: false // true = don't display Upload Options | Display Upload Options
+        },
+        toolbar: [
+            // [groupName, [list of button]]
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']],
+            ['insert', ['link', 'picture',]],
+            ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+        popover: {
+            image: [
+                ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
+                ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                ['remove', ['removeMedia']]
+            ],
+            link: [
+                ['link', ['linkDialogShow', 'unlink']]
+            ],
+            
+            air: [
+                ['color', ['color']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['para', ['ul', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture']]
+            ]
+        },
+      });
+      function reset(){
+        $('#content').summernote('reset');
+      }
+      //end of summernote
     // writing jquery
     $(document).ready(function(){
+
+      
         // hide and show question form
         
         $('#addLink').on('click', function(){
@@ -182,11 +186,10 @@
             url: '{{route("All-Question")}}' + '?id=' + topic_id,
             method:'GET',
             success:function(data){
-            //  console.log(data.topicQuestions);
-              
-                console.log(data.topicQuestions[data.topicQuestions.length-1]['id']);
                 $("#tableAddForm").css('display', "block");
-                $('.table.questions').append('<tr id = "eachquestion" value = '+data.topicQuestions[data.topicQuestions.length-1]['id']+'><td><div><span style ="border-width:1px;margin-top:10px;margin-bottom:10px;"><a href ="#" id ="getQuestions">Q'+data.topicQuestions[data.topicQuestions.length-1]['id']+'</a></span></div></td></tr>');
+                $('.table.questions').append('<tr id = "eachquestion" value = '+data.topicQuestions[data.topicQuestions.length-1]['id']+'><td><div><span style ="border-width:1px;margin-top:10px;margin-bottom:10px;"><a href ="#" id ="getQuestions">Q'+$('.totalquestionnumber').html()+'</a></span></div></td></tr>');
+                var counter = $('.questioncounter').closest('#eachquestion');
+                console.log(counter);
               //  $('#getQuestions').append('<br>'+i+'<br>');
                 //console.log('<tr id = "eachquestion" value = "'+data.topicQuestions[0]['id']+'"><td><div><span style ="border-width:1px;margin-top:10px;margin-bottom:10vx;"><a href ="#" id ="getQuestions">Q'+i+'</a></span></div></td></tr>');
               
@@ -198,7 +201,7 @@
             }
           });
         }  
-        //add ajax code
+        
         $('.AddForm').on('submit',function(event){
           event.preventDefault();
           $('input').focus(function(){
@@ -208,6 +211,9 @@
           $('input').blur(function(){
               $(this).css('background', 'white')
           })
+          $("#questionColumn").css('display', "none");
+          $("#tableEditForm").css('display', "none");
+          $("#tableAddForm").css('display', "block");
           var content = $('textarea#content').val();
           var answer = $("input#radio[name = 'answer']:checked").val();
           var option_A = $("input#option_A[name = 'option_A']").val();
@@ -215,7 +221,7 @@
           var option_C = $("input#option_C[name = 'option_C']").val();
           var option_D = $("input#option_D[name = 'option_D']").val();
           var mark = $("input#mark[name = 'mark']").val();
-          console.log(mark);
+         // console.log(mark);
           jQuery.ajax({
           url: "{{route('Add-Question')}}" +'?topic_id=' + topic_id,
           method: "POST",
@@ -233,7 +239,11 @@
 
             $('.alert.alert-success').css('display','block').text(data.success);
             $('.alert.alert-success').css('display','none');
-            load_data(); 
+            $('.AddForm').trigger('reset');
+            reset();
+            $('.totalquestionnumber').html(data.totalquestions);
+            load_data();
+            
           },
           error:function(jqXHR, textStatus, errorThrown, data){
             console.log(data);
@@ -245,14 +255,12 @@
         });
         // get all questions back for editing
         $('.getQuestions').on('click', function(){
-          $("#questionColumn").css('display', "none");
-          $("#tableAddForm").css('display', "none");
           
           var a = $(this).closest('#eachquestion');
           data = a.children('td').map(function(){
             return $(this).text();
           }).get()
-        //  console.log(a.attr('value'));
+          console.log(a);
           // get question id 
           $id = a.attr('value');
           event.preventDefault();
@@ -265,6 +273,8 @@
           },
           success:function(data){
           //  load_data();
+            $("#questionColumn").css('display', "none");
+            $("#tableAddForm").css('display', "none");
             $("#tableEditForm").css('display', "block");
             $('#editContent').text(data.question['content']);
             $('#editoption_A').val(data.option['option_A']);
@@ -277,7 +287,7 @@
             
           },
           error:function(jqXHR, textStatus, errorThrown, data){
-            console.log(data);
+          //  console.log(data);
               console.log(jqXHR);
               console.log(textStatus);
               console.log(errorThrown);
@@ -324,7 +334,7 @@
     })
     
     </script>
-    <script type="text/javascript" src="{{asset('js/question.js')}}"></script>
+  
     <script type="text/javascript" src="{{asset('js/sign-in-page/js/jquery-3.5.1.min.js')}}"></script>
     
     <script type="text/javascript" src="{{asset('js/sign-in-page/js//bootstrap.min.js')}}"></script>

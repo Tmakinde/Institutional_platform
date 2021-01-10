@@ -16,14 +16,15 @@ use App\Option;
 use App\Question;
 use Illuminate\Support\Facades\Log;
 
-class questionController extends Controller
+class questionController extends MyInstitution
 {
     function __construct(){
         $this->middleware('auth:web');
-        ini_set('memory_limit','-1');
     }
 
-    public function view(Request $request){
+    public function view(Request $request, Pagination $pagination){
+        $currentAdminInstitutionId = currentAdminInstitutionId();
+        $currentInstitution = getInstitution();
         $topic_id = $request->topic_id;
         if($topic_id == null){
             return redirect()->to('/Mycourses');
@@ -57,8 +58,6 @@ class questionController extends Controller
             $array= $listOfQuestions;
 
             $countArray = count($array);
-            
-            $paginator = new pagination();// create an instance of pagination
 
             $paginator->setCurrent($array[0]); // set current paginator value
 
@@ -69,7 +68,9 @@ class questionController extends Controller
                 'topic_id' => $topic_id,
                 'listOfOptions' => $listOfOptions,
                 'countArray' => $countArray,
+                'currentInstitution' => $currentInstitution,
             ]);
+
         }else{
             Log::alert("Some went wrong");
             return response()->json([
@@ -79,7 +80,7 @@ class questionController extends Controller
         
     }
 
-    public function getQuestions(Request $request){
+    public function getQuestions(Request $request, Pagination $pagination){
 
         $topic_id = $request->topic_id;
         $topic_questions =  DB::table('questions')->where( ['topic_id' => $topic_id])->get();
@@ -108,8 +109,6 @@ class questionController extends Controller
         session()->put('markObject', $markObject);
         $array= $listOfQuestions;
         $countArray = count($array);
-        
-        $paginator = new pagination();// create an instance of pagination
 
         $counter = $request->counter;// to count pagination
 
