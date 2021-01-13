@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\support\Facades\Auth;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use App\Admin;
+use App\Institution;
 use DB;
 
 class LoginController extends Controller
@@ -33,13 +34,21 @@ class LoginController extends Controller
     public function authenticate(Request $request){
 
         $credentials = $request->only('username', 'password');
-        $checkadmin = DB::table('admins')->where('is_activated',1)->where('username', $request['username'])->where('password', $request['password'])->first();
-        /*
-        *   login user
-        */
-        if (Auth::guard('admins')->attempt($credentials)/* && !is_null($checkadmin)*/){
-            return redirect()->intended(route('dashboard'));
+        $institutionFromSubdomain = $request->institution;
+        //$checkadmin = DB::table('admins')->where('is_activated',1)->where('username', $request['username'])->where('password', $request['password'])->first();
+        $checkadmin = Admin::where('username', $credentials['username'])->first();
+        $currentAdminInstitution = $checkadmin->institutions;
 
+        /*
+        *   first check if the current admin institution username is same as the subdomain name
+        */
+        
+        if($currentAdminInstitution->username == $institutionFromSubdomain){
+            if (Auth::guard('admins')->attempt($credentials)/* && !is_null($checkadmin)*/){
+                return redirect()->intended(route('dashboard'));
+            }
+        }else{
+            return redirect()->to('/admin');
         }
 
          /* 

@@ -459,7 +459,7 @@ class UserController extends Controller
     public function testTable(){
         return view('Admin.table');
     }
-
+    
     public function setExamTimeView(Request $request){
         $currentAdminInstitutionId = Auth::user()->institution_id;
         $currentInstitution = Institution::where('id', $currentAdminInstitutionId)->first();

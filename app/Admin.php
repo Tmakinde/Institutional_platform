@@ -27,7 +27,7 @@ class Admin extends Authenticatable
     //  protected $guarded = 'Admins'
 
     public function institutions(){
-        return $this->belongsTo(Institution::class);
+        return $this->belongsTo(Institution::class, 'institution_id');
     }
 
 }

@@ -77,12 +77,12 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function showRegisterForm(){
+    public function showRegisterForm($admin){
         
         return view('Admin.Register');
     }
 
-    public function register(Request $request){
+    public function register(Request $request, $admin){
         $input = $request->all();
 
         $validator = $this->validator($input);

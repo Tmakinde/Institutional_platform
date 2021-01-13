@@ -12,28 +12,12 @@
 */
 
 
-Route::get('/login', 'Auth\LoginController@showLoginForm');
-Route::post('/login', 'Auth\LoginController@login')->name('login');
-Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-Route::post('/MySubject', 'HomeController@createUserSubject')->name('User-Subject');
-Route::get('/Mycourses', 'HomeController@displayUserSubjects')->name('User-Courses');
-Route::get('/topics', 'HomeController@getTopic')->name('topics');
-Route::get('/ViewTopic', 'HomeController@viewTopic')->name('Get-Topic');
-Route::get('/downloadfile', 'HomeController@downloadfile')->name('download-file');
 
-// test question
-Route::get('/mytest', 'questionController@view')->name('test-question');
-Route::post('/mytest','questionController@getQuestions')->name('get-myquestion');
-
-Route::post('mark-my-test','questionController@mark')->name('mark');
-
-
-Route::group(['prefix' => 'admin'], function () {
-
+Route::group(['prefix' => 'admin'],  function () {
+    
     Route::get('/register', 'Admin\RegisterController@showRegisterForm')->name('admin-register');
     Route::post('/register', 'Admin\RegisterController@register');
+
     Route::get('/login', 'Admin\LoginController@showLoginForm')->name('admin-login');
     Route::post('/login', 'Admin\LoginController@authenticate');
     Route::get('/', 'Admin\AdminController@index')->name('dashboard');
@@ -61,11 +45,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/SubjectSection', 'Admin\UserController@Subjects')->name('Subject-Section');
     Route::post('/Add-Subject', 'Admin\UserController@createSubject')->name('Add-Subject');
     Route::post('/Delete-Subject', 'Admin\UserController@deleteSubject')->name('Delete-Subject');
-   
+
     // Topic CRUD
     Route::get('/TopicSection', 'Admin\UserController@Topic')->name('Topic-Section');
     Route::post('/Add-Topic', 'Admin\UserController@createTopic')->name('Add-Topic');
-     
+    
     // Question
     Route::get('/Question', 'Admin\UserController@topicQuestion')->name('Question-Section');
     Route::post('/Add-Question', 'Admin\UserController@createTopicQuestion')->name('Add-Question');
@@ -91,3 +75,24 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/activation/{token}','Admin\RegisterController@adminActivation')->name('email-confirmation');
 
 });
+
+
+    Route::get('/login', 'Auth\LoginController@showLoginForm');
+    Route::post('/login', 'Auth\LoginController@login')->name('login');
+    Route::get('/', 'HomeController@index');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+    Route::post('/MySubject', 'HomeController@createUserSubject')->name('User-Subject');
+    Route::get('/Mycourses', 'HomeController@displayUserSubjects')->name('User-Courses');
+    Route::get('/topics', 'HomeController@getTopic')->name('topics');
+    Route::get('/ViewTopic', 'HomeController@viewTopic')->name('Get-Topic');
+    Route::get('/downloadfile', 'HomeController@downloadfile')->name('download-file');
+
+    // test question
+    Route::get('/mytest', 'questionController@view')->name('test-question');
+    Route::post('/mytest','questionController@getQuestions')->name('get-myquestion');
+
+    Route::post('mark-my-test','questionController@mark')->name('mark');
+
+
+
