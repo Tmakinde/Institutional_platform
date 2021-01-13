@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\node;
+use App\node;
 use DB;
 use App\Admin;
 use App\User;
@@ -22,9 +22,9 @@ class questionController extends MyInstitution
         $this->middleware('auth:web');
     }
 
-    public function view(Request $request, Pagination $pagination){
-        $currentAdminInstitutionId = currentAdminInstitutionId();
-        $currentInstitution = getInstitution();
+    public function view(Request $request, pagination $paginator){
+        $currentAdminInstitutionId = $this->currentAdminInstitutionId();
+        $currentInstitution = $this->getInstitution();
         $topic_id = $request->topic_id;
         if($topic_id == null){
             return redirect()->to('/Mycourses');
@@ -34,14 +34,11 @@ class questionController extends MyInstitution
         if(!$topic_questions->isEmpty()){
             $listOfQuestions = array();
             $listOfQuestionsId = array();
-
             $listOfOptions = array();
-            //$listOfAnswers = [];// 
             $listOfMarks = array();
             for ($i=0; $i < count($topic_questions); $i++) { 
                 array_push($listOfQuestions,$topic_questions[$i]->content);
                 array_push($listOfOptions,array());
-
                 $options = Option::where('question_id',$topic_questions[$i]->id)->first();
                 array_push($listOfOptions[$i], $options->option_A);//push 
                 array_push($listOfOptions[$i], $options->option_B);
@@ -80,7 +77,7 @@ class questionController extends MyInstitution
         
     }
 
-    public function getQuestions(Request $request, Pagination $pagination){
+    public function getQuestions(Request $request, Pagination $paginator){
 
         $topic_id = $request->topic_id;
         $topic_questions =  DB::table('questions')->where( ['topic_id' => $topic_id])->get();
@@ -103,6 +100,7 @@ class questionController extends MyInstitution
             $listOfMarks[$i+1] = $topic_questions[$i]->mark;
             //array_push($listOfMarks ,$topic_questions[$i]->mark);
         }
+        
         $answerObject = $listOfAnswers;
         $markObject = $listOfMarks;
         session()->put('answerObject',$answerObject);
@@ -134,7 +132,7 @@ class questionController extends MyInstitution
                     'listOfQuestions' => $listOfQuestions,
                     'listOfOptions' => $listOfOptions[$counter],
                 ]);
-            
+
             }elseif ($action == "prev" and $counter != 0) {
                 $previousPage = $paginator->setCurrent($array[$counter-1]); // brings previous page and set it as curent page
 
@@ -154,7 +152,7 @@ class questionController extends MyInstitution
         }
 
     }
-
+    
     public function mark(Request $request){
         $option_selected = $request->option_selected;
         $answerObject = session()->get('answerObject');
@@ -167,6 +165,7 @@ class questionController extends MyInstitution
             }
                       
         }
+        
         session()->put('score', $score);
         return response()->json([
             "mark" =>session()->get('answerObject'),
@@ -174,5 +173,7 @@ class questionController extends MyInstitution
             "score" => $score,
         ]);
     }
+
+    
 
 }
