@@ -36,9 +36,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+        
         $this->mapApiRoutes();
-
         $this->mapWebRoutes();
+        $this->mapApiMain();
 
         //
     }
@@ -70,5 +71,15 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
+    }
+    /***
+     * Main pages and signin/sinup route map
+     */
+
+    protected function mapApiMain()
+    {
+        Route::middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/main.php'));
     }
 }

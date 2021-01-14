@@ -77,12 +77,12 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function showRegisterForm($admin){
+    public function showRegisterForm(){
         
         return view('Admin.Register');
     }
 
-    public function register(Request $request, $admin){
+    public function register(Request $request){
         $input = $request->all();
 
         $validator = $this->validator($input);
@@ -91,7 +91,7 @@ class RegisterController extends Controller
             /*
                 get institution details so that has beeninsert into database
             */
-            $institutions_details =  DB::table('institutions')->where( ['username' => $institution['username']])->first();
+            $institutions_details =  DB::table('institutions')->where(['username' => $institution['username']])->first();
 
             $institution['link'] = str_random(10);
 
@@ -108,14 +108,14 @@ class RegisterController extends Controller
                 }
                 );
 
-            DB::table('admins')->insert( ['username' => $institution['username'],'password'=>$hashpassword, 'institution_id' => $institutions_details->id]);
+            DB::table('admins')->insert( ['username' => trim($institution['username']),'password'=>$hashpassword, 'institution_id' => $institutions_details->id]);
 
-            $admins_details = DB::table('admins')->where( ['username' => $institution['username'],'institution_id' => $institutions_details->id])->first();
+            $admins_details = DB::table('admins')->where( ['username' => trim($institution['username']),'institution_id' => $institutions_details->id])->first();
             // insert the link into database ass token
             DB::table('admins_activations')->insert( ['token' => $institution['link'], 'admins_id' =>  $admins_details->id]);
         
         //    dd($institution['email']);
-            return redirect('admin/login')->with('Success', 'We have sent you a virtual activation code, Do not check your email...');
+            return redirect()->back()->with('Success', 'We have sent you a virtual activation code, Do not check your email...');
         }
         return redirect()->back()->withErrors($validator);
     
