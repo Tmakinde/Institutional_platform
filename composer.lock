@@ -4,8 +4,135 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94d4bf9ac7f4a933030e46a346ee2917",
+    "content-hash": "423e8f638b403d05b9740c435bc888c2",
     "packages": [
+        {
+            "name": "bakerkretzmar/laravel-cloudinary",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bakerkretzmar/laravel-cloudinary.git",
+                "reference": "b976ad93a268b6c10f4837b003b405c32ff7d27f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bakerkretzmar/laravel-cloudinary/zipball/b976ad93a268b6c10f4837b003b405c32ff7d27f",
+                "reference": "b976ad93a268b6c10f4837b003b405c32ff7d27f",
+                "shasum": ""
+            },
+            "require": {
+                "cloudinary/cloudinary_php": "^1.14",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.2",
+                "orchestra/testbench": "^3.8",
+                "phpunit/phpunit": "^8.3"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bakerkretzmar\\LaravelCloudinary\\LaravelCloudinaryServiceProvider"
+                    ],
+                    "aliases": {
+                        "Cloudinaire": "Bakerkretzmar\\LaravelCloudinary\\Facades\\Cloudinaire"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bakerkretzmar\\LaravelCloudinary\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Dagorn",
+                    "email": "jeremy.dagorn@gmail.com"
+                },
+                {
+                    "name": "Jacob Baker-Kretzmar",
+                    "email": "jacobtbk@gmail.com"
+                }
+            ],
+            "description": "Cloudinary API wrapper for Laravel",
+            "homepage": "https://github.com/bakerkretzmar/laravel-cloudinary",
+            "keywords": [
+                "api",
+                "cloudinary",
+                "image",
+                "laravel",
+                "upload"
+            ],
+            "support": {
+                "issues": "https://github.com/bakerkretzmar/laravel-cloudinary/issues",
+                "source": "https://github.com/bakerkretzmar/laravel-cloudinary/tree/master"
+            },
+            "time": "2019-08-20T13:24:14+00:00"
+        },
+        {
+            "name": "cloudinary/cloudinary_php",
+            "version": "1.20.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cloudinary/cloudinary_php.git",
+                "reference": "2a8e6ed5bc6cf024022c6fcc03b69e1ce92ccaab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/2a8e6ed5bc6cf024022c6fcc03b69e1ce92ccaab",
+                "reference": "2a8e6ed5bc6cf024022c6fcc03b69e1ce92ccaab",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "ext-zip": "*",
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ],
+                "files": [
+                    "src/Helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cloudinary",
+                    "homepage": "https://github.com/cloudinary/cloudinary_php/graphs/contributors"
+                }
+            ],
+            "description": "Cloudinary PHP SDK",
+            "homepage": "https://github.com/cloudinary/cloudinary_php",
+            "keywords": [
+                "cdn",
+                "cloud",
+                "cloudinary",
+                "image management",
+                "sdk"
+            ],
+            "support": {
+                "email": "info@cloudinary.com",
+                "issues": "https://github.com/cloudinary/cloudinary_php/issues",
+                "source": "https://github.com/cloudinary/cloudinary_php/tree/1.20.0"
+            },
+            "time": "2021-01-13T18:40:23+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "v0.1.1",
@@ -5917,7 +6044,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "bakerkretzmar/laravel-cloudinary": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

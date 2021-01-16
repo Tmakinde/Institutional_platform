@@ -110,7 +110,7 @@ class RegisterController extends Controller
 
             DB::table('admins')->insert( ['username' => trim($institution['username']),'password'=>$hashpassword, 'institution_id' => $institutions_details->id]);
 
-            $admins_details = DB::table('admins')->where( ['username' => trim($institution['username']),'institution_id' => $institutions_details->id])->first();
+            $admins_details = DB::table('admins')->where(['username' => trim($institution['username']),'institution_id' => $institutions_details->id])->first();
             // insert the link into database ass token
             DB::table('admins_activations')->insert( ['token' => $institution['link'], 'admins_id' =>  $admins_details->id]);
         
