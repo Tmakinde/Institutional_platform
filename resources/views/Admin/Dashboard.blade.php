@@ -17,18 +17,19 @@
         <h1 class="animated flipInY delay1">{{$currentInstitution->name}}</h1>
         <p>Online Educational Platform for our Students</p>
       </div>
-      <div class="item active"><img src="{{URL::asset('img/img3.jpg')}}" width="100%" height="30px" alt="First slide" style="opacity:0.6;"> </div> 
-      <div class="item"> <img src="{{URL::asset('img/img1.jpg')}}"  width="100%" alt="Second slide" style="opacity:0.6;"> </div> 
-      <div class="item"> <img src="{{URL::asset('img/img2.jpg')}}"  width="100%" alt="Third slide" style="opacity:0.6;"> </div> 
+      <div class="item active"><img class="lazyload" data-src="https://res.cloudinary.com/tmakinde/image/upload/v1610723402/Myinstitution%20Images/img3_u2mek3.jpg" width="100%" height="30px" alt="First slide" style="opacity:0.6;"> </div> 
+      <div class="item"> <img class="lazyload" data-src="https://res.cloudinary.com/tmakinde/image/upload/v1610723397/Myinstitution%20Images/img1_ozglhp.jpg"  width="100%" alt="Second slide" style="opacity:0.6;"> </div> 
+      <div class="item"> <img class="lazyload" data-src="https://res.cloudinary.com/tmakinde/image/upload/v1610723391/Myinstitution%20Images/img2_vymfek.jpg"  width="100%" alt="Third slide" style="opacity:0.6;"> </div> 
     
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myPic" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
+      <span class="sr-only prev">Previous</span>
     </a>
+    <span class="counter" style="display:none">1</span>
     <a class="right carousel-control" href="#myPic" data-slide="next">
       <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
+      <span class="sr-only next">Next</span>
     </a>
     
   </div>
@@ -103,12 +104,12 @@
   <section>
     <div class="container" style="margin-top:30px">
       <div class="row">
-        <div class="col-md-4 col-sm-2">
+        <div class="col-md-4 col-sm-2 ratio-box fade-box">
           <span style="color:red"><h1><b>How to navigate through the webpage to Add Class</b></h1></span>
           <p ><h2><i style="line-height: 20px">Click the class link <a href="{{route('Class-Section')}}">here</a> and you will see this.<br>This is the page where you will create class.<br>Add the class name you want and trigger the Add button.</i></h2></p>
         </div>
-        <div class="col-md-8 col-sm-4">
-          <img src="{{URL::asset('img/class1.png')}}" alt="subject-img " width="100%" height="120%">
+        <div class="col-md-8 col-sm-4 ratio-box fade-box">
+          <img class="mediabox-img lazyload" data-sizes="auto" data-lowsrc="https://res.cloudinary.com/tmakinde/image/upload/v1610723389/Myinstitution%20Images/class1_ycv6hg.png 100w" data-src="https://res.cloudinary.com/tmakinde/image/upload/v1610723389/Myinstitution%20Images/class1_ycv6hg.png" alt="subject-img " width="100%" height="120%">
         </div>
       </div>
     </div>
@@ -120,8 +121,8 @@
           <span style="color:red"><h1><b>How to navigate through the webpage to Create Student</b></h1></span>
           <p ><h2><i style="line-height: 20px">In order to create each student in a class, you need to create class first.<br>After that click on the class which you want to add student too and you will be redirected to this.</i></h2></p>
         </div>
-        <div class="col-md-8 col-sm-4">
-          <img src="{{URL::asset('img/student-page-image.png')}}" alt="subject-img " width="100%" height="120%">
+        <div class="col-md-8 col-sm-4 ratio-box fade-box">
+          <img class="mediabox-img lazyload"  data-sizes="auto" data-lowsrc="https://res.cloudinary.com/tmakinde/image/upload/v1610723389/Myinstitution%20Images/student-page-image_y2ik0s.png" data-src="https://res.cloudinary.com/tmakinde/image/upload/v1610723389/Myinstitution%20Images/student-page-image_y2ik0s.png" alt="subject-img" width="100%" height="120%">
         </div>
       </div>
     </div>
@@ -133,10 +134,10 @@
           <span style="color:red"><h1><b>How to navigate through the webpage to Add Subject to Class</b></h1></span>
           <p ><h2><i style="line-height: 20px">Click the Assign Button</i></h2></p>
         </div>
-        <div class="col-md-8 col-sm-4">
-          <img src="{{URL::asset('img/class.png')}}" alt="class-img " width="100%">
+        <div class="col-md-8 col-sm-4 ratio-box fade-box">
+          <img class="mediabox-img lazyload" data-sizes="auto" data-lowsrc="https://res.cloudinary.com/tmakinde/image/upload/v1610723389/Myinstitution%20Images/class_xpertn.png" data-src="https://res.cloudinary.com/tmakinde/image/upload/v1610723389/Myinstitution%20Images/class_xpertn.png" alt="class-img " width="100%">
         
-          <img src="{{URL::asset('img/subject.png')}}" alt="subject-img " width="100%" >
+          <img class="mediabox-img lazyload" data-sizes="auto" data-lowsrc="https://res.cloudinary.com/tmakinde/image/upload/v1610723392/Myinstitution%20Images/subject_i5ofoz.png" data-src="https://res.cloudinary.com/tmakinde/image/upload/v1610723392/Myinstitution%20Images/subject_i5ofoz.png" alt="subject-img " width="100%" >
         </div>
       </div>
     </div>
@@ -157,4 +158,43 @@
 
 @section('scripts')
 @parent
+<script>
+  $(document).ready(function(){
+    var counter = 1;
+
+    function load_data(counter) {
+      if(counter ==1){
+        $(".left.carousel-control").hide();
+      }else{
+
+        if(counter ==3){
+          $(".left.carousel-control").show(); 
+          $(".right.carousel-control").hide(); 
+        }else{
+          $(".left.carousel-control").show(); 
+          $(".right.carousel-control").show(); 
+        } 
+
+      }
+      return counter;
+    }
+    load_data(counter);
+    $(".glyphicon-chevron-left").click(function(){
+      counter = $(".counter").html();
+      counter =number(counter)-1;
+      $(".counter").html(counter);
+      load_data();
+      console.log(counter);
+    })
+
+    $(".glyphicon-chevron-right").click(function(){
+      counter = load_data(counter+1);
+      $(".counter").html(counter);
+      load_data(counter);
+      console.log(counter);
+    })
+    
+  })
+
+</script>
 @endsection

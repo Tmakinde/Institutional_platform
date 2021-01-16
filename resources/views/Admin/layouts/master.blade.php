@@ -9,7 +9,7 @@
     <title> @yield('title') </title>
     
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-
+    
     <link rel="stylesheet" href="{{ url('css/assets/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{ url('css/assets/css/font-awesome.min.css')}}"> 
 	<link rel="stylesheet" href="{{ url('css/assets/css/bootstrap-theme.css')}}" media="screen"> 
@@ -20,15 +20,87 @@
     <link rel="stylesheet" href="{{ url('css/sign-in-page/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url('css/sign-in-page/css/css/all.css') }}">
     <link rel="stylesheet" href="{{ url('js/sign-in-page/js/css/bootstrap.min.js') }}">
+    <script type='text/javascript' src="{{asset('/js/lazysizes.min.js')}}"></script>
     <!-- jquery link -->
     <script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    
+    <!-- lazysizes link -->
+    
+    <script src="https://afarkas.github.io/lazysizes/plugins/respimg/ls.respimg.min.js"></script>
+    <script src="https://afarkas.github.io/lazysizes/plugins/parent-fit/ls.parent-fit.min.js"></script>
+    <script src="https://afarkas.github.io/lazysizes/plugins/object-fit/ls.object-fit.min.js"></script>
+
+    <script src="https://afarkas.github.io/lazysizes/plugins/blur-up/ls.blur-up.min.js"></script>
+    <script src="https://afarkas.github.io/lazysizes/lazysizes.min.js"></script>
+    <script src="lazysizes.min.js" async=""></script>
     <!-- include libraries(jQuery, bootstrap) -->
 
     <!-- include summernote css/js -->
-    
 
-    <!-- include summernote css/js -->
+
+    <!-- Low Quality Image Placeholder) -->
+    <style>
+        .blur-up {
+            -webkit-filter: blur(5px);
+            filter: blur(5px);
+            transition: filter 400ms, -webkit-filter 400ms;
+        }
+
+        .blur-up.lazyloaded {
+            -webkit-filter: blur(0);
+            filter: blur(0);
+        }
+
+        .fade-box .lazyload,
+        .fade-box .lazyloading {
+            opacity: 0;
+            transition: opacity 400ms;
+        }
+
+        .fade-box img.lazyloaded {
+            opacity: 1;
+
+        }
+        .wrapper {
+            margin: auto;
+            width: 80%;
+            min-width: 320px;
+            max-width: 900px;
+            }
+
+        .mediabox-img.ls-blur-up-is-loading,
+        .mediabox-img.lazyload:not([src]) {
+        visibility: hidden;
+        }
+
+        .mediabox {
+        padding-bottom: 66.6667%;
+        }
+
+        .ls-blur-up-img,
+        .mediabox-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        font-family: "blur-up: always", "object-fit: cover";
+        object-fit: cover;
+        }
+
+        .ls-blur-up-img {
+        filter: blur(10px);
+        opacity: 1;
+        transition: opacity 1000ms, filter 1500ms;
+        }
+
+        .ls-blur-up-img.ls-inview.ls-original-loaded {
+        opacity: 0;
+        filter: blur(5px);
+        }
+    </style>
     
     <style>
         .jumbotron{
