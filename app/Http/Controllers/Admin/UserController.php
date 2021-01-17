@@ -282,7 +282,7 @@ class UserController extends Controller
             
             $img->removeAttribute('src');
             $img->setAttribute('src', \Cloudder::getResult()['url']);
-            
+            \File::delete($path);
         }
 
         $content = $dom->saveHTML();
@@ -296,7 +296,7 @@ class UserController extends Controller
         $topic->Title = $request->title;
         $topic->content = $content;
         $topic->subject_id = $request->id;
-        if($request->has('file') && $request->file('file')->isvalid()){
+      /*  if($request->has('file') && $request->file('file')->isvalid()){
             $file = $request->file('file');
         
             $filename = time().$file->getClientOriginalName();
@@ -307,7 +307,8 @@ class UserController extends Controller
             );
            // $request->file->move(public_path('uploads'), $filename);
             $topic->filename = $filename;
-        }
+        }*/
+        $topic->filename = $path;
         $topic->save();
         return redirect()->back();
 
@@ -360,7 +361,8 @@ class UserController extends Controller
             dd(\Cloudder::getResult()['url']);
             
             $img->removeAttribute('src');
-            $img->setAttribute('src', \Cloudder::getResult()['url']);;
+            $img->setAttribute('src', \Cloudder::getResult()['url']);
+            \File::delete($path);
         }
         //end summernote
         $content = $dom->saveHTML();
