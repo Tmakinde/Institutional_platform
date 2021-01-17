@@ -17,9 +17,9 @@
         <h1 class="animated flipInY delay1">{{$currentInstitution->name}}</h1>
         <p>Online Educational Platform for our Students</p>
       </div>
-      <div class="item active"><img class="lazyload" data-src="https://res.cloudinary.com/tmakinde/image/upload/v1610723402/Myinstitution%20Images/img3_u2mek3.jpg" width="100%" height="30px" alt="First slide" style="opacity:0.6;"> </div> 
-      <div class="item"> <img class="lazyload" data-src="https://res.cloudinary.com/tmakinde/image/upload/v1610723397/Myinstitution%20Images/img1_ozglhp.jpg"  width="100%" alt="Second slide" style="opacity:0.6;"> </div> 
-      <div class="item"> <img class="lazyload" data-src="https://res.cloudinary.com/tmakinde/image/upload/v1610723391/Myinstitution%20Images/img2_vymfek.jpg"  width="100%" alt="Third slide" style="opacity:0.6;"> </div> 
+      <div class="item active"><img class="lazyload" data-src="https://res.cloudinary.com/tmakinde/image/upload/v1610723402/Myinstitution%20Images/img3_u2mek3.jpg" width="100%" height="30px" alt="First slide" style="opacity:0.6;width:100%;height:600px"> </div> 
+      <div class="item"> <img class="lazyload" data-src="https://res.cloudinary.com/tmakinde/image/upload/v1610723397/Myinstitution%20Images/img1_ozglhp.jpg"  width="100%" alt="Second slide" style="opacity:0.6;width:100%;height:600px"> </div> 
+      <div class="item"> <img class="lazyload" data-src="https://res.cloudinary.com/tmakinde/image/upload/v1610723391/Myinstitution%20Images/img2_vymfek.jpg"  width="100%" alt="Third slide" style="opacity:0.6;width:100%;height:600px"> </div> 
     
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myPic" data-slide="prev">

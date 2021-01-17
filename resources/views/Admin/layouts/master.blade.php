@@ -10,15 +10,7 @@
     
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="{{ url('css/assets/css/bootstrap.min.css')}}">
-	<link rel="stylesheet" href="{{ url('css/assets/css/font-awesome.min.css')}}"> 
-	<link rel="stylesheet" href="{{ url('css/assets/css/bootstrap-theme.css')}}" media="screen"> 
-	<link rel="stylesheet" href="{{ url('css/assets/css/style.css')}}">
-    <link rel='stylesheet' id='camera-css' href="{{ url('css/assets/css/camera.css')}}" type='text/css' media='all'>
-	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700"> 
-
     <link rel="stylesheet" href="{{ url('css/sign-in-page/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url('css/sign-in-page/css/css/all.css') }}">
     <link rel="stylesheet" href="{{ url('js/sign-in-page/js/css/bootstrap.min.js') }}">
     <script type='text/javascript' src="{{asset('/js/lazysizes.min.js')}}"></script>
     <!-- jquery link -->
@@ -37,7 +29,12 @@
     <!-- include libraries(jQuery, bootstrap) -->
 
     <!-- include summernote css/js -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
     <!-- Low Quality Image Placeholder) -->
     <style>

@@ -259,18 +259,30 @@ class UserController extends Controller
         
         foreach($images as $k => $img){
             $data = $img->getAttribute('src');
-
+            $x = explode(';', $data);
+            $y = explode(',', $x[1]);
+            $z = base64_decode($y[1]);
+            
+            //print($z);
             list($type, $data) = explode(';', $data);
             list(, $data)      = explode(',', $data);
             $data = base64_decode($data);
-
             $image_name= "/img/" . time().$k.'.png';
-            $path = public_path() . $image_name;
 
+            $public_id = "Myinstitution Images/".time().$k; // for cloudinary piblic id;
+
+            $path = public_path() . $image_name;
             file_put_contents($path, $data);
+
+            $filename = $path;
+
+            // Upload file to cloudinary for summernote access
+            $cloudinary_image = \Cloudder::upload($filename, $public_id);
+            dd(\Cloudder::getResult()['url']);
             
             $img->removeAttribute('src');
-            $img->setAttribute('src', $image_name);
+            $img->setAttribute('src', \Cloudder::getResult()['url']);
+            
         }
 
         $content = $dom->saveHTML();
@@ -335,12 +347,20 @@ class UserController extends Controller
             $data = base64_decode($data);
 
             $image_name= "/img/" . time().$k.'.png';
-            $path = public_path() . $image_name;
 
+            $public_id = "Myinstitution Images/".time().$k; // for cloudinary piblic id;
+
+            $path = public_path() . $image_name;
             file_put_contents($path, $data);
+
+            $filename = $path;
+
+            // Upload file to cloudinary for summernote access
+            $cloudinary_image = \Cloudder::upload($filename, $public_id);
+            dd(\Cloudder::getResult()['url']);
             
             $img->removeAttribute('src');
-            $img->setAttribute('src', $image_name);
+            $img->setAttribute('src', \Cloudder::getResult()['url']);;
         }
         //end summernote
         $content = $dom->saveHTML();
