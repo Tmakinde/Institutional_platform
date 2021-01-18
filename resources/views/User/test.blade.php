@@ -248,7 +248,7 @@ $(document).ready(function(){
 
     $('button.submit').click(function(event){
        // myFunction();
-        event.preventDefault();
+        //event.preventDefault();
         var counter = $('.counter').html();
         //save the last selected option into option object before submiting
         option[counter] = $('input#answer:checked').val();
@@ -257,7 +257,6 @@ $(document).ready(function(){
         $.ajax({
             url: '{{route("mark")}}',
             method: "post",
-
             data:{
                 "_token":"{{ csrf_token() }}",
                 "option_selected":chosenOptionObject,

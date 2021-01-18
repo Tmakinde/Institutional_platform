@@ -109,34 +109,34 @@
     </style>
     </head>
     <body id ="body">
-        <nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark text-right">
+        <nav class="navbar navbar-expand-lg navbar-expand-md fixed-top bg-dark navbar-dark text-right">
             <h3 style="color: red">{{$currentInstitution->name}}</h3>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item m-auto pl-lg-5">
+                    <li class="nav-item m-auto pl-lg-5 ">
                         <a class="nav-link " href="{{route('dashboard')}}">Dashboard</a>
                     </li>
-                    <li class="nav-item m-auto pl-lg-5">
+                    <li class="nav-item m-auto pl-lg-5 ">
                         <a class="nav-link" href="#">Subject</a>
                     </li>
-                    <li class="nav-item m-auto pl-lg-5">
+                    <li class="nav-item m-auto pl-lg-5 ">
                         <a class="nav-link" href="{{route('Class-Section')}}">Class</a>
                     </li>
-                    <li class="nav-item m-auto pl-lg-5">
+                    <li class="nav-item m-auto pl-lg-5 ">
                         <a class="nav-link" href="#">Student</a>
                     </li>
 
-                    <li class="nav-item m-auto pl-lg-5">
+                    <li class="nav-item m-auto pl-lg-5 ">
                         <a class="nav-link" href="{{route('Admin-Section')}}">Admin</a>
                     </li>
                     
-                    <li class="nav-item m-auto pl-lg-5">
+                    <li class="nav-item m-auto pl-lg-5 ">
                     <a class="nav-link" href="#">Messages<i class="fas fa-bell ml-2"></i></a> 
                     </li>
-                    <li class="nav-item m-auto pl-lg-5">
+                    <li class="nav-item m-auto pl-lg-5 ">
                     <a class="nav-link" href="{{route('admin-logout')}}">Sign out</a> 
                     </li>
                 </ul>

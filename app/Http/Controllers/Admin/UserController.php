@@ -278,7 +278,7 @@ class UserController extends Controller
 
             // Upload file to cloudinary for summernote access
             $cloudinary_image = \Cloudder::upload($filename, $public_id);
-            dd(\Cloudder::getResult()['url']);
+            //dd(\Cloudder::getResult()['url']);
             
             $img->removeAttribute('src');
             $img->setAttribute('src', \Cloudder::getResult()['url']);
@@ -328,7 +328,7 @@ class UserController extends Controller
        
         return view('Admin.question', compact('currentInstitution', 'currentTopic','topicQuestions'));
     }
-    
+
     public function createTopicQuestion(Request $request){
     //    dd($request->all());
         // save question in question table

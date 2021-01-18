@@ -15,6 +15,7 @@ use App\Topic;
 use App\Option;
 use App\Question;
 use Illuminate\Support\Facades\Log;
+use App\Notifications\TestResult;
 
 class questionController extends MyInstitution
 {
@@ -35,7 +36,8 @@ class questionController extends MyInstitution
             $listOfQuestions = array();
             $listOfQuestionsId = array();
             $listOfOptions = array();
-            $listOfMarks = array();
+            $listOfAnswers = [];// 
+            $listOfMarks = [];
             for ($i=0; $i < count($topic_questions); $i++) { 
                 array_push($listOfQuestions,$topic_questions[$i]->content);
                 array_push($listOfOptions,array());
@@ -44,12 +46,18 @@ class questionController extends MyInstitution
                 array_push($listOfOptions[$i], $options->option_B);
                 array_push($listOfOptions[$i], $options->option_C);
                 array_push($listOfOptions[$i], $options->option_D);
-
+                $listOfAnswers[$i+1] = $topic_questions[$i]->answer;
+                $listOfMarks[$i+1] = $topic_questions[$i]->mark;
                // array_push($listOfAnswers ,$topic_questions[$i]->answer);
                // $listOfAnswers[$i+1] = $topic_questions[$i]->answer;
                 array_push($listOfMarks ,$topic_questions[$i]->mark);
             }
-            
+
+            $answerObject = $listOfAnswers;
+            $markObject = $listOfMarks;
+            session()->put('answerObject',$answerObject);
+            session()->put('markObject', $markObject);
+
             $countArray = count($listOfQuestions);
 
             $array= $listOfQuestions;
@@ -153,20 +161,28 @@ class questionController extends MyInstitution
 
     }
     
+    
     public function mark(Request $request){
         $option_selected = $request->option_selected;
+        $totalQuestions = $request->counter;
         $answerObject = session()->get('answerObject');
         $markObject = session()->get('markObject');
-        $totalQuestions = $request->counter;
+        // get total mark
+        $totalMark = 0;
         $score = 0;
+
         for ($i=1; $i <= $totalQuestions ; $i++) {       
             if ($option_selected[$i] == $answerObject[$i]) {
                 $score += $markObject[$i];
-            }
-                      
+            }  
+            $totalMark += $markObject[$i];          
         }
-        
+
         session()->put('score', $score);
+        session()->put('totalMark', $totalMark);
+        $user = auth()->user();
+        $user->notify(new TestResult($user)); // notification
+
         return response()->json([
             "mark" =>session()->get('answerObject'),
             "option_selected" => $option_selected,
@@ -174,6 +190,5 @@ class questionController extends MyInstitution
         ]);
     }
 
-    
 
 }
