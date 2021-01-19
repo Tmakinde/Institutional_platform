@@ -166,7 +166,6 @@
       if(counter ==1){
         $(".left.carousel-control").hide();
       }else{
-
         if(counter ==3){
           $(".left.carousel-control").show(); 
           $(".right.carousel-control").hide(); 
