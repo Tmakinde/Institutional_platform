@@ -10,4 +10,9 @@ class Exam extends Model
     public function topics(){
         return $this->belongsTo(Topic::class);
     }
+
+    public function users(){
+        return $this->hasMany(User::class);
+    }
+    
 }

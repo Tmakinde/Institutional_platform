@@ -45,4 +45,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Subject::class, 'subjects_users');
     }
 
+    public function timers(){
+        return $this->hasMany(Timer::class);
+    }
+
+    public function exams(){
+        return $this->hasMany(Exam::class);
+    }
+
 }

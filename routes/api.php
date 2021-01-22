@@ -22,5 +22,7 @@ Route::group(["middleware =>'auth:api'"], function(){
     Route::get('/sort', 'API@sort');
     Route::get('/filter', 'API@filter');
     Route::get('/search', 'API@search');
+    Route::get('time', 'API@time')->name('time');
+    Route::post('updateTime', 'API@updateTime')->name('update.time');
 });
 

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Institution;
+use App\Exam;
+use App\Timer;
+
 class API extends Controller
 {
     /**
@@ -76,9 +79,24 @@ class API extends Controller
             ]);
         }
     }
-    public function create()
+
+    // retrive exam time from database
+    public function time(Request $request)
     {
-        //
+        $topic_id = $request->topic_id;
+        $exam = Exam::where('topic_id', $topic_id)->first();
+        $hour = $exam->hrs;
+        $min = $exam->min;
+        $sec = $exam->sec;
+        $time = [
+            'hour' => $hour,
+            'min' => $min,
+            'sec' => $sec,
+        ];
+
+        return response()->json([
+            "time" => $time,
+        ]);
     }
 
     /**
@@ -87,9 +105,28 @@ class API extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    // to update time for user that is unable to complete a particular test
+    public function updateTime(Request $request)
     {
-        //
+        $userId = auth()->user()->id;
+        $Exam = Exam::where("topic_id", $topic_id)->first();
+        $examId = $Exam->id;
+        $hour = $request->hrs;
+        $minutes = $request->min;
+        $seconds = $request->sec;
+        $topic_id = $request->topic_id;
+        
+        $timerForCurrentUser = new Timer;
+        $timerForCurrentUser->hrs = $hour;
+        $timerForCurrentUser->min= $minutes;
+        $timerForCurrentUser->sec = $seconds;
+        $timerForCurrentUser->user_id = $userId;
+        $timerForCurrentUser->exam_id = $examId;
+        $timerForCurrentUser->save();
+        
+        return response()->json([
+            "success" => "success",
+        ]);
     }
 
     /**
