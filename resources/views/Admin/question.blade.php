@@ -257,8 +257,7 @@
           data = a.children('td').map(function(){
             return $(this).text();
           }).get()
-          var b = $(this).children();
-          console.log(b);
+          
           // get question id 
           $id = a.attr('value');
           event.preventDefault();

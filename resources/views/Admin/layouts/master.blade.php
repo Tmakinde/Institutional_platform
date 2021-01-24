@@ -111,7 +111,7 @@
     </style>
     </head>
     <body id ="body">
-        <nav class="navbar navbar-expand-lg navbar-expand-md fixed-top bg-dark navbar-dark text-right">
+        <nav class="navbar navbar-expand-lg navbar-expand-md navbar-expand-sm fixed-top bg-dark navbar-dark text-right">
             <h3 style="color: red">{{$currentInstitution->name}}</h3>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
                 <span class="navbar-toggler-icon"></span>
