@@ -15,9 +15,9 @@ class CreateSubjectsUsersTable extends Migration
     {
         Schema::create('subjects_users', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('subject_id')->unsigned();     
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

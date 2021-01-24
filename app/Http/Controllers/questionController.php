@@ -31,28 +31,32 @@ class questionController extends MyInstitution
             return redirect()->to('/Mycourses');
         };
         $topic_questions =  Question::where(['topic_id' => $topic_id])->get();
-
         if(!$topic_questions->isEmpty()){
             $listOfQuestions = array();
             $listOfQuestionsId = array();
             $listOfOptions = array();
             $listOfAnswers = [];// 
             $listOfMarks = [];
+            
             for ($i=0; $i < count($topic_questions); $i++) { 
                 array_push($listOfQuestions,$topic_questions[$i]->content);
                 array_push($listOfOptions,array());
-                $options = Option::where('question_id',$topic_questions[$i]->id)->first();
-                array_push($listOfOptions[$i], $options->option_A);//push 
+                $options = $topic_questions[$i]->options;
+                array_push($listOfOptions[$i], $options->option_A);//push
+               
                 array_push($listOfOptions[$i], $options->option_B);
+               
                 array_push($listOfOptions[$i], $options->option_C);
+               
                 array_push($listOfOptions[$i], $options->option_D);
+               
                 $listOfAnswers[$i+1] = $topic_questions[$i]->answer;
                 $listOfMarks[$i+1] = $topic_questions[$i]->mark;
                // array_push($listOfAnswers ,$topic_questions[$i]->answer);
                // $listOfAnswers[$i+1] = $topic_questions[$i]->answer;
                 array_push($listOfMarks ,$topic_questions[$i]->mark);
             }
-
+            
             $answerObject = $listOfAnswers;
             $markObject = $listOfMarks;
             session()->put('answerObject',$answerObject);
@@ -67,7 +71,7 @@ class questionController extends MyInstitution
             $paginator->setCurrent($array[0]); // set current paginator value
 
             $currentPage = $paginator->getCurrent()->getItem();
-
+            
             return view('User.test')->with([
                 'currentPage' => $currentPage,
                 'topic_id' => $topic_id,
@@ -184,8 +188,6 @@ class questionController extends MyInstitution
         $user->notify(new TestResult($user)); // notification
 
         return response()->json([
-            "mark" =>session()->get('answerObject'),
-            "option_selected" => $option_selected,
             "score" => $score,
         ]);
     }

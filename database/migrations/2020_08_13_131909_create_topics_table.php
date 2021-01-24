@@ -17,7 +17,7 @@ class CreateTopicsTable extends Migration
             $table->increments('id');
             $table->integer('subject_id')->unsigned();
             $table->string('Topicname');
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -24,7 +24,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-       // Route::pattern('domain', '[a-z0-9.\]+');
+        Route::pattern('domain', '[a-z0-9.\]+');
         parent::boot();
 
     }
@@ -79,7 +79,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiMain()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/main.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/main.php'));
     }
 }

@@ -15,7 +15,7 @@ class CreateTableClassidTable extends Migration
     {
         Schema::table('subjects', function (Blueprint $table) {
             $table->integer('classes_id')->unsigned();
-            $table->foreign('classes_id')->references('id')->on('classes');
+            $table->foreign('classes_id')->references('id')->on('classes')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -24,5 +24,7 @@ Route::group(["middleware =>'auth:api'"], function(){
     Route::get('/search', 'API@search');
     Route::get('time', 'API@time')->name('time');
     Route::post('updateTime', 'API@updateTime')->name('update.time');
+    Route::post('deleteTime', 'API@deleteTime')->name('delete.time');
+    Route::post('/checker', 'API@checker')->name('checker');
 });
 

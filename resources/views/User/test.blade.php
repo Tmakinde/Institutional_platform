@@ -6,12 +6,18 @@ check | Admin
 @section('content')
 
 <div class="container">
+    <p class="hrs" style="display:none"></p>
+    <p class="min" style="display:none"></p>
+    <p class="sec" style="display:none"></p>
+    <p style="float:right;margin-top:100px" id="timer"></p>
     <div class="row">
         <div class ="col-md-2 col-lg-2 col-sm-2">
+        
         </div>
         
         <div class ="col-md-8 col-lg-8 col-sm-8">
             <div class ="jumbotron">
+            
                 <h4 class ="questiontag">{{$currentPage}}</h4>
                 <br>
                 
@@ -73,6 +79,43 @@ check | Admin
 
 @section('scripts')
 <script>
+var topic_id = $('.topic_id').html();
+$.ajax({
+    url: "{{route('time')}}",
+    method: 'GET',
+    data: {
+        "topic_id":topic_id
+    },
+    dataType: "json",
+    success:function(data){
+        var deadline = new Date();
+        deadline.setHours(deadline.getHours() + data.time.hour);
+        deadline.setMinutes(deadline.getMinutes() + data.time.min);
+        deadline.setSeconds(deadline.getSeconds() + data.time.sec);
+        var interval = setInterval(function() 
+        {
+            var now = new Date();
+            var duration = deadline - now;
+            //console.log(duration);
+            var days = Math.floor(duration / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((duration%(1000*60*60*24))/(1000*60*60))
+            var minutes = Math.floor(((duration%(1000*60*60*24))%(1000*60*60))/(1000*60));
+            var seconds = Math.floor(((((duration%(1000*60*60*24))%(1000*60*60))%(1000*60)))/1000);
+            document.getElementById("timer").innerHTML ='<b>'+ 
+            hours + "h " + minutes + "m " + seconds + "s "+'</b>';
+            if (duration < 00) {
+            clearInterval(interval);
+            document.getElementById("demo").innerHTML = "EXPIRED"
+            }
+            $('.hrs').html(hours);
+            $('.min').html(minutes);
+            $('.sec').html(seconds);
+        }, 1000);
+       
+    }
+
+}
+)
 $(document).ready(function(){
     var counter = $('.counter').html();
     // create a dic t store the chosen option
@@ -94,7 +137,6 @@ $(document).ready(function(){
         }else{
             $('.previous').css('display', "flex");
         }
-        
         
     }
 
@@ -267,8 +309,69 @@ $(document).ready(function(){
                 console.log(data);
             }
         })
+
+        $.ajax({
+            url: '{{route("delete.time")}}',
+            method: "post",
+            data:{
+
+                "_token":"{{ csrf_token() }}",
+                'topic_id':$('.topic_id').text(),
+            },
+            
+            success:function(data){
+                console.log(data);
+            }
+        })
     })
-    
+
+    window.onbeforeunload = function (event) {
+        event.preventDefault();
+        event.returnValue = "Are you sure you want to leave this page ?";
+      //  console.log(event);
+        console.log($('.hrs').html());
+        console.log($('.min').html());
+        console.log($('.sec').html());
+        
+        $.ajax({
+            url: "{{route('update.time')}}",
+            method: "POST",
+            data:{
+                "_token":"{{ csrf_token() }}",
+                'hrs': $('.hrs').text(),
+                'min': $('.min').text(),
+                'sec': $('.sec').text(),
+                'topic_id':$('.topic_id').text(),
+            },
+            success:function(data){
+                console.log(data);
+            }
+        })
+        return "Are you sure you want to leave this page ?"; 
+    }
+
+    window.addEventListener('beforeunload', (event) => {
+        event.returnValue = "Are you sure you want to submit"
+    })
+    // save timer to database every 5 sec
+    var interval = setInterval(function() 
+        {
+            $.ajax({
+            url: "{{route('update.time')}}",
+            method: "POST",
+            data:{
+                "_token":"{{ csrf_token() }}",
+                'hrs': $('.hrs').text(),
+                'min': $('.min').text(),
+                'sec': $('.sec').text(),
+                'topic_id':$('.topic_id').text(),
+            },
+            success:function(data){
+                console.log(data);
+            }
+        })
+        }, 5000);
+        
 })
 </script>
 @parent

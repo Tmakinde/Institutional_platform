@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use App\Admin;
 use App\Institution;
+use Illuminate\Support\Facades\Route;
 
 class Subdomain
 {
@@ -26,7 +27,7 @@ class Subdomain
         $arrayUrl = explode('.', $domain);
 
         $subdomain = $arrayUrl[0];
-
+        //$subdomain =  Route::getCurrentRoute()->getParameter('subdomain');
         $checkInstitution = Institution::where('username', $subdomain)->firstOrFail();
 
         $checkUsername = $checkInstitution->username;

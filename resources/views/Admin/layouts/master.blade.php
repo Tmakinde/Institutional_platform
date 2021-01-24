@@ -10,9 +10,9 @@
     
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="{{ url('css/sign-in-page/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url('js/sign-in-page/js/css/bootstrap.min.js') }}">
-    <script type='text/javascript' src="{{asset('/js/lazysizes.min.js')}}"></script>
+    <link rel="stylesheet" href="{{ url('/css/sign-in-page/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url('/js/sign-in-page/js/css/bootstrap.min.js') }}">
+    <link rel="stylesheet" href="{{ url('/js/lazysizes.min.js')}}">
     <!-- jquery link -->
     <script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -25,10 +25,12 @@
 
     <script src="https://afarkas.github.io/lazysizes/plugins/blur-up/ls.blur-up.min.js"></script>
     <script src="https://afarkas.github.io/lazysizes/lazysizes.min.js"></script>
-    <script src="lazysizes.min.js" async=""></script>
+    <link rel="stylesheet" href="{{ url('/js/lazysizes.min.js')}}">
     <!-- include libraries(jQuery, bootstrap) -->
 
     <!-- include summernote css/js -->
+    <link href="{{ url('/css/summernote-bs4.min.css')}}" rel="stylesheet">
+    <link href="{{ url('/js/summernote-bs4.min.js')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
@@ -149,35 +151,16 @@
         
         @section('scripts')
         <!-- include libraries(jQuery, bootstrap) -->
-        <script src="{{asset('js/assets/js/modernizr-latest.js')}}"></script> 
-        <script type='text/javascript' src="{{asset('js/assets/js/jquery.min.js')}}"></script>
-        <script type='text/javascript' src="{{asset('js/assets/js/fancybox/jquery.fancybox.pack.js')}}"></script>
+        <link href="{{asset('/js/assets/js/modernizr-latest.js')}}"></script> 
+        <link href="{{url('/js/assets/js/jquery.min.js')}}"></script>
+        <link href="{{url('/js/assets/js/fancybox/jquery.fancybox.pack.js')}}"></script>
         
-        <script type='text/javascript' src="{{asset('js/assets/js/jquery.mobile.customized.min.js')}}"></script>
-        <script type='text/javascript' src="{{asset('js/assets/js/jquery.easing.1.3.js')}}"></script> 
-        <script type='text/javascript' src="{{asset('js/assets/js/camera.min.js')}}"></script> 
-        <script src="{{asset('js/assets/js/bootstrap.min.js')}}"></script> 
-        <script src="{{asset('js/assets/js/custom.js')}}"></script>
-        <script>
-		jQuery(function(){
-			
-			jQuery('#camera_wrap_4').camera({
-                transPeriod: 500,
-                time: 3000,
-				height: '600',
-				loader: 'false',
-				pagination: true,
-				thumbnails: false,
-				hover: false,
-                playPause: false,
-                navigation: false,
-				opacityOnGrid: false,
-				imagePath: "{{URL::asset('img/')}}"
-			});
-
-		});
-      
-	</script>
+        <link href="{{url('/js/assets/js/jquery.mobile.customized.min.js')}}"></script>
+        <link href="{{url('/js/assets/js/jquery.easing.1.3.js')}}"></script> 
+        <link href="{{url('/js/assets/js/camera.min.js')}}"></script> 
+        <link href="{{url('/js/assets/js/bootstrap.min.js')}}"></script> 
+        <link href="{{url('/js/assets/js/custom.js')}}"></script>
+    
         @show
     </body>
 </html>

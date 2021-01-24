@@ -61,11 +61,11 @@ Route::group(['prefix' => 'admin'],  function () {
 
     
     //Forgot Password Routes
-    Route::get('/password/reset','Admin\ForgotpasswordController@showLinkRequestForm')->name('password-request');
+    Route::get('/password/reset','Admin\ForgotpasswordController@showLinkRequestForm')->name('password.request');
     Route::post('/password/email','Admin\ForgotpasswordController@sendResetLinkEmail')->name('admin.password-email');
 
     //Reset Password Routes
-    Route::get('/password/reset/{token}','Admin\ResetpasswordController@showResetForm')->name('password-reset');
+    Route::get('/password/reset/{token}','Admin\ResetpasswordController@showResetForm')->name('password.reset');
     Route::post('/password/reset','Admin\ResetpasswordController@reset')->name('admin.password-update');
 
     // email confirmation route

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-
+<span class="topic_id" style="display:none">{{$currentTopic->id}}</span>
 <table class ="table table-bordered" style ="min-height:500px;border-collapse:collapse;margin-top:50px">
       <tr>
         <td style ="width:100px;">
@@ -22,7 +22,8 @@
           @php
           $i = 1
           @endphp
-          @foreach($topicQuestions as $topicQuestion)    
+          @foreach($topicQuestions as $topicQuestion)
+            
             <tr id ="eachquestion" value ="{{$topicQuestion->id}}">
               <td>
                 <div>
@@ -162,14 +163,10 @@
             ]
         },
       });
-      function reset(){
-        $('#content').summernote('reset');
-      }
+      
       //end of summernote
     // writing jquery
     $(document).ready(function(){
-
-      
         // hide and show question form
         
         $('#addLink').on('click', function(){
@@ -240,7 +237,6 @@
             $('.alert.alert-success').css('display','block').text(data.success);
             $('.alert.alert-success').css('display','none');
             $('.AddForm').trigger('reset');
-            reset();
             $('.totalquestionnumber').html(data.totalquestions);
             load_data();
             
@@ -253,6 +249,7 @@
           }
           })
         });
+
         // get all questions back for editing
         $('.getQuestions').on('click', function(){
           
@@ -260,7 +257,8 @@
           data = a.children('td').map(function(){
             return $(this).text();
           }).get()
-          console.log(a);
+          var b = $(this).children();
+          console.log(b);
           // get question id 
           $id = a.attr('value');
           event.preventDefault();
@@ -284,7 +282,6 @@
             $('input#editradio[name = "answer"][value ="'+data.answer+'"]').prop('checked',true);
             $('#editmark').val(data.question['mark']);
             $('form.UpdateForm').attr('value', data.question['id']);
-            
           },
           error:function(jqXHR, textStatus, errorThrown, data){
           //  console.log(data);

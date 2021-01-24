@@ -296,7 +296,7 @@ class UserController extends Controller
         $topic->Title = $request->title;
         $topic->content = $content;
         $topic->subject_id = $request->id;
-      /*  if($request->has('file') && $request->file('file')->isvalid()){
+        if($request->has('file') && $request->file('file')->isvalid()){
             $file = $request->file('file');
         
             $filename = time().$file->getClientOriginalName();
@@ -306,9 +306,8 @@ class UserController extends Controller
                 $filename
             );
            // $request->file->move(public_path('uploads'), $filename);
-            $topic->filename = $filename;
-        }*/
-        $topic->filename = $path;
+            $topic->filename = $path;
+        }
         $topic->save();
         return redirect()->back();
 
@@ -396,7 +395,7 @@ class UserController extends Controller
 
         // save option in option table
         $options = new Option;
-        $options->question_id = $questionsData->id;
+        $options->question_id = $question->id;
         $options->option_A = $request->option_A;
         $options->option_B = $request->option_B;
         $options->option_C = $request->option_C;
@@ -493,7 +492,7 @@ class UserController extends Controller
     }
 
     public function setExamTime(Request $request, $id){
-        
+       ;
         try {
             $topic = Topic::find($id);
             if($topic != null ){
