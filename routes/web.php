@@ -37,7 +37,7 @@ Route::group(['prefix' => 'admin'],  function () {
     Route::get('/StudentSection', 'Admin\UserController@Users')->name('Student-Section');
     Route::post('/Add-Student', 'Admin\UserController@createUser')->name('Add-Student');
     Route::post('/Delete-Student', 'Admin\UserController@destroy')->name('Delete-Student');
-
+    
     //Subject CRUD
     Route::get('/SubjectSection', 'Admin\UserController@Subjects')->name('Subject-Section');
     Route::post('/Add-Subject', 'Admin\UserController@createSubject')->name('Add-Subject');
@@ -89,7 +89,7 @@ Route::group(['prefix' => 'admin'],  function () {
     Route::get('/mytest', 'questionController@view')->name('test-question');
     Route::post('/mytest','questionController@getQuestions')->name('get-myquestion');
 
-    Route::post('mark-my-test','questionController@mark')->name('mark');
-
-    
-
+    Route::post('/mark-my-test','questionController@mark')->name('mark');
+    Route::get('/submission', function(){
+        return view('User.submission');
+    })->name('submission');

@@ -32,12 +32,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        
+
         view()->composer('*', function($view){
             if (auth()->check()) {
                 $currentUser = auth()->user();
                 $currentInstitution = Institution::where('id', $currentUser->institution_id)->first();
                 view()->share('currentInstitution', $currentInstitution);
+                view()->share('currentUserId', $currentUser->id);
             }
         });
          

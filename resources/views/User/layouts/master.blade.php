@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta name ="_token" content="{{ csrf_token() }}">
+  <meta name="csrf-token" content="{{csrf_token()}}">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>@yield('title')</title>
   <!-- jquery link -->
@@ -30,6 +30,41 @@
         .pagination-nav{
             margin-left:250px;
         }
+        html,
+		body {
+			background-color: #fff;
+			color: #636b6f;
+			font-family: 'Nunito', sans-serif;
+			font-weight: 100;
+			height: 100vh;
+			margin: 0;
+		}
+
+		.full-height {
+			height: 100vh;
+		}
+
+		.flex-center {
+			align-items: center;
+			display: flex;
+			justify-content: center;
+		}
+
+		.position-ref {
+			position: relative;
+		}
+
+		.code {
+			border-right: 2px solid;
+			font-size: 26px;
+			padding: 0 15px 0 15px;
+			text-align: center;
+		}
+
+		.message {
+			font-size: 18px;
+			text-align: center;
+		}
     </style>
 </head>
 

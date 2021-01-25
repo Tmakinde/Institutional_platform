@@ -5,11 +5,12 @@
 @endsection
 
 @section('content')
-   <div class="container mt-5 pt-5" >
-    <div class = "alert alert-success" id = "alert" style ="display:none">
+   <div class="container mt-5 pt-5">
+    <div class = "alert alert-success" id = "alert" style ="display:none;margin-top:50px;">
       <h6 id ="result"></h6>
     </div>
    <h4 class ="well mb-4">{{$currentClass->class}}</h4>
+   <h4 class ="classId" style="display:none">{{$currentClass->id}}</h4>
    <!--action = "{{route('Add-Student', ['id' => $currentClass->id])}}" method = "post"-->
     <form id ="AddForm" method ="Post" action = "{{route('Add-Student', ['id' => $currentClass->id])}}">
     @csrf
@@ -52,105 +53,7 @@
   </div>
 @endsection
 @section('scripts')
-  <script>
-  //  var studentList = {{json_encode($listStudents)}};
-  //  console.log(studentList['name']); 
-    var currentClass = {{json_encode($currentClass->id)}};
-    var currentInstitution = {{json_encode($currentInstitution->id)}};
-    var studentId = {{json_encode($currentInstitution->id)}};
-    var newArray = {'id':currentClass};
-    jQuery(document).ready(function(){
-      
-      function load_data(){
-          $.ajax({
-          url: '{{route("Student-Section")}}' + '?id=' + newArray['id'],
-          method:'GET',
-          success:function(data){
-            $('#body').html(data)
-            $('#alert').css('display', 'none');
-            console.log(data);
-          },
-          error:function(jqXHR, textStatus, errorThrown){
-         
-          console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-         }
-        });
-        }
-    //  load_data();
-    /*()  jQuery('#AddForm').submit(function(e){
-        e.preventDefault();
-        $.ajaxSetup({
-            headers : {
-                'X-CSRF-TOKEN':$('meta[name = "_token"]').attr('content')
-            }
-        })
-        var action = $(this).attr('action');
-      //  console.log($('#addName').val());
-        jQuery.ajax({
-        url: "{{route('Add-Student')}}" +'?id=' + newArray['id'],
-        type: "POST",
-        data:{
-          "_token":"{{ csrf_token() }}",   
-          email:$('#addEmail').val(),
-          name:$('#addName').val(),
-          pasword:$('#addPassword').val()
-        },
-        success:function(data){     
-          load_data();
-          $('#alert').css('display','flex');
-          $('#result').text(data.Success);      
-        },
-        error:function(data){
-        //  load_data();
-          console.log(data);
-        //  console.log(jqXHR);
-        //    console.log(textStatus);
-        //    console.log(errorThrown);
-        }
-        });
-      })*/
-    
-      $('.deleteForm').on('submit',function(event){
-          event.preventDefault();
-          var action = $(this).attr('action');
-        //  $tr = $(this).closest('tr');
-       //   var data = $tr.children('td').map(function(){
-       //     return $(this).text();
-       //   }).get()
-        //  console.log(data);
-
-          console.log($('#hiddenValue').val());
-          jQuery.ajax({
-          url: "{{route('Delete-Student')}}" +'?id=' + $('#hiddenValue').val(),
-          type: "POST",
-          data:{
-            "_token":"{{ csrf_token() }}",
-            
-          },
-          success:function(data){
-            load_data();
-            $('#alert').show();
-            $('#result').text(data.Success);  
-          },
-          error:function(data){
-            load_data();
-            console.log(data);
-            console.log(jqXHR);
-              console.log(textStatus);
-              console.log(errorThrown);
-          
-          }
-          })
-        });
-      });  
-    //  jQuery(document).ajaxStop(function(){
-    //    window.location.reload();
-    //  })
-
-  
-  </script> 
-  @parent
-  @endsection
+<script src="{{asset('js/User.js')}}"></script>
+@parent
+@endsection
   

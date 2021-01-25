@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Timer extends Model
 {
-    //
+    protected $fillable = ['exam_id', 'user_id', 'hrs', 'min', 'sec'];
     public function users(){
         return $this->belongsTo(User::class);
     }

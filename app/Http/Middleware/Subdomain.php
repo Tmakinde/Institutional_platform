@@ -20,10 +20,10 @@ class Subdomain
     public function handle($request, Closure $next)
     {
         /** All this is to compare the subdomain and check for the subdomain name in 
+         *  
          *  the institution table if it matches any username.
          * **/
         $domain = $request->getHost();
-        //dd($domain);
         if(str_is('*.'.env('APP_NAME', 'localhost').'', $domain)){
             $arrayUrl = explode('.', $domain);
             if (count($arrayUrl) == 2) {

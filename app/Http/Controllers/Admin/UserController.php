@@ -69,11 +69,10 @@ class UserController extends Controller
         return view('Admin.User')->with([
             'currentClass'=>$currentClass,
             'listStudents'=>$listStudents,
-            'currentInstitution'=>$currentInstitution
         ]);
 
     }
-
+    
     public function createUser(Request $request) // create user for each class by the admin of the current institution
     {
         $validator = Validator::make($request->all(), [
@@ -169,7 +168,9 @@ class UserController extends Controller
         //
         $class = User::where('id', $request->id)->first();
         $class->delete();
-        return redirect()->back();
+        return response()->json([
+            'success'=>'User Deleted Successfully',
+        ]);
     }
 
     public function Class()
