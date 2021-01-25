@@ -12,12 +12,11 @@ class MyInstitution extends Controller
 
     protected $currentAdminInstitutionId;
 
-
     protected function currentAdminInstitutionId(){
         return Auth::user()->institution_id;
     }
 
-    protected function getInstitution(){
+    public function getInstitution(){
         return Institution::where('id', Auth::user()->institution_id)->first();
     }
 

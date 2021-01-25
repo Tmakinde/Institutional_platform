@@ -22,20 +22,19 @@ class HomeController extends Controller
 
     public function masterBlade(){
         $currentUser = Auth::user();
-        $currentInstitution = Institution::where('id', $currentUser->institution_id)->first();
         $userClass = Classes::where('id', $currentUser ->classes_id)->first();
         $userClassSubjects = $userClass->subjects;
      //   dd($currentInstitution);
-        return view('User.layouts.master', compact('currentInstitution'));
+        return view('User.layouts.master');
     }
 
     public function index(){
         $currentUser = Auth::user();
-        $currentInstitution = Institution::where('id', $currentUser->institution_id)->first();
+
         $userClass = Classes::where('id', $currentUser ->classes_id)->first();
         $userClassSubjects = $userClass->subjects;
      //   dd($currentInstitution);
-        return view('User.welcome', compact('currentUser', 'currentInstitution','userClassSubjects','userClass'));
+        return view('User.welcome', compact('currentUser','userClassSubjects','userClass'));
     }
 
     public function createUserSubject(Request $resquest){
@@ -68,15 +67,12 @@ class HomeController extends Controller
         $currentUser = User::where('id', Auth::user()->id)->first();
         $userSubjects = $currentUser->subjects;
         
-       // dd($userSubjects);
-        $currentInstitution = Institution::where('id', $currentUser->institution_id)->first();
-        return view('User.subject', compact('currentInstitution','userSubjects'));
+        return view('User.subject', compact('userSubjects'));
     }
 
     public function getTopic(Request $request)
     {
         $currentUser = User::where('id', Auth::user()->id)->first();
-        $currentInstitution = Institution::where('id', $currentUser->institution_id)->first();
         // to get subject topics
         $subjectId = $request->id;
         $currentSubject = Subject::where('id', $subjectId)->first();
@@ -85,7 +81,6 @@ class HomeController extends Controller
         return view('User.topic')->with([
             'topics'=>$topics,
             'currentSubject'=>$currentSubject,
-            'currentInstitution'=>$currentInstitution,
         ]);
     }
     

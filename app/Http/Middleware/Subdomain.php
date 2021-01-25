@@ -23,19 +23,23 @@ class Subdomain
          *  the institution table if it matches any username.
          * **/
         $domain = $request->getHost();
+        //dd($domain);
+        if(str_is('*.'.env('APP_NAME', 'localhost').'', $domain)){
+            $arrayUrl = explode('.', $domain);
+            if (count($arrayUrl) == 2) {
+                $subdomain = $arrayUrl[0];
+                //$subdomain =  Route::getCurrentRoute()->getParameter('subdomain');
+                $checkInstitution = Institution::where('username', $subdomain)->firstOrFail();
 
-        $arrayUrl = explode('.', $domain);
+                $checkUsername = $checkInstitution->username;
 
-        $subdomain = $arrayUrl[0];
-        //$subdomain =  Route::getCurrentRoute()->getParameter('subdomain');
-        $checkInstitution = Institution::where('username', $subdomain)->firstOrFail();
-
-        $checkUsername = $checkInstitution->username;
-
-        $request->merge([
-            'institution' => $checkUsername,
-        ]);
-
+                $request->merge([
+                    'institution' => $checkUsername,
+                ]);
+            }
+            
+        }
+        
         return $next($request);
     }
 }

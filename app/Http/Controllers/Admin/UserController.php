@@ -51,15 +51,12 @@ class UserController extends Controller
     protected function register(array $data ){
         return Classes::create([
            'class' => $data['class'],
-
            'institution_id' => Auth::user()->institution_id,
         ]);
     }
     //note that user are refer to as the student
 
     public function Users(Request $request){
-        $currentAdminInstitutionId = Auth::user()->institution_id;
-        $currentInstitution = Institution::where('id', $currentAdminInstitutionId)->first();
         $currentClass = Classes::where('id',$request->id)->where('institution_id', Auth::user()->institution_id)->first();
         $listStudents = $currentClass->users;
 
@@ -134,13 +131,12 @@ class UserController extends Controller
         /*
             getting users using the current admin under the admin institution
         */
-        $institutionUsersDetails = $currentInstitution->users()->first();
+        $institutionUsersDetails = $currentInstitution->users->first();
        // $institution = Institution::all();
     
       //  return view('Admin.Dashboard', compact('institutionUsersDetails', 'currentInstitution'));
         return response()->json([
             'institutionUsersDetails' => "$institutionUsersDetails",
-            'currentInstitution' => '$currentInstitution',
         ]);
     }
 
@@ -180,11 +176,9 @@ class UserController extends Controller
     {
         
         $currentAdminInstitutionId = Auth::user()->institution_id;
-        $currentInstitution = Institution::where('id', $currentAdminInstitutionId)->first();
-        $classes = $currentInstitution->classes;
+        $classes = Classes::where('institution_id', $currentAdminInstitutionId)->get();
         return view('Admin.Class')->with([
             'classes'=>$classes,
-            'currentInstitution'=>$currentInstitution
         ]);
     }
 
@@ -208,15 +202,10 @@ class UserController extends Controller
 
     public function Subjects(Request $request)
     {
-        $currentAdminInstitutionId = Auth::user()->institution_id;
-        $currentInstitution = Institution::where('id', $currentAdminInstitutionId)->first();
         $currentClass = Classes::where('id', $request->id)->first();
         $subjects = $currentClass->subjects;
-        
-        
         return view('Admin.Subject')->with([
             'subjects'=>$subjects,
-            'currentInstitution'=>$currentInstitution,
             'currentClass'=>$currentClass,
         ]);
         
@@ -241,12 +230,10 @@ class UserController extends Controller
 
     public function Topic(Request $request)
     {
-        $currentAdminInstitutionId = Auth::user()->institution_id;
-        $currentInstitution = Institution::where('id', $currentAdminInstitutionId)->first();
         $subject = Subject::where('id',$request->id)->first();
         $topics = $subject->topics; //get topic under the subject
        // dd($topics);
-        return view('Admin.Topic', compact('currentInstitution', 'subject', 'topics'));
+        return view('Admin.Topic', compact('subject', 'topics'));
     }
 
     public function createTopic(Request $request)
@@ -315,17 +302,10 @@ class UserController extends Controller
 
     //create topic Crud
     public function topicQuestion(Request $request){
-        $currentAdminInstitutionId = Auth::user()->institution_id;
-        $currentInstitution = Institution::where('id', $currentAdminInstitutionId)->first();
         $currentTopic = Topic::where('id', $request->topic_id)->first();
-
-        // get all questions
-        
         // get all questions assign to topic
         $topicQuestions = $currentTopic->questions;
-        
-       
-        return view('Admin.question', compact('currentInstitution', 'currentTopic','topicQuestions'));
+        return view('Admin.question', compact('currentTopic','topicQuestions'));
     }
 
     public function createTopicQuestion(Request $request){
