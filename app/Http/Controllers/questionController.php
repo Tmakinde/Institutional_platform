@@ -14,6 +14,7 @@ use App\Subject;
 use App\Topic;
 use App\Option;
 use App\Question;
+use App\Exam;
 use Illuminate\Support\Facades\Log;
 use App\Notifications\TestResult;
 
@@ -27,11 +28,12 @@ class questionController extends MyInstitution
         $currentAdminInstitutionId = $this->currentAdminInstitutionId();
         $currentInstitution = $this->getInstitution();
         $topic_id = $request->topic_id;
+        $exam = Exam::where('topic_id', $topic_id)->firstOrFail();
         if($topic_id == null){
             return redirect()->to('/Mycourses');
         };
         $topic_questions =  Question::where(['topic_id' => $topic_id])->get();
-        if(!$topic_questions->isEmpty()){
+        if(!$topic_questions->isEmpty() && $exam->is_activated != 0){
             $listOfQuestions = array();
             $listOfQuestionsId = array();
             $listOfOptions = array();
@@ -81,10 +83,7 @@ class questionController extends MyInstitution
             ]);
 
         }else{
-            Log::alert("Some went wrong");
-            return response()->json([
-                'message'=>'No questions yet',
-            ]);
+            return view('User.nullquestion');
         }
         
     }
