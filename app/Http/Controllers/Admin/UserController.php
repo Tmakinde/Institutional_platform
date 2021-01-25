@@ -77,10 +77,10 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            "email" => 'required',
-            "password "=> 'required',
+            "email" => 'required | unique:users',
+            "password"=> 'required',
         ]);
-        if($request->name !== null ){
+        if($validator->passes()){
            // $validator->passes()
             $currentAdminInstitutionId = Auth::user()->institution_id;
             $newUser = new User;
@@ -100,10 +100,7 @@ class UserController extends Controller
             
             return redirect()->back();
         }
-       
-        return response()->json([
-            'Error' => 'Unable to Submit your details',
-        ]);
+        return redirect()->back()->withErrors($validator);
     }
         
     public function listUser(Request $request)

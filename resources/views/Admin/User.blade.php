@@ -9,6 +9,11 @@
     <div class = "alert alert-success" id = "alert" style ="display:none;margin-top:50px;">
       <h6 id ="result"></h6>
     </div>
+    @if($errors->any())
+      @foreach ($errors->all() as $error)
+        <div class = "alert alert-danger" style ="margin-top:50px;">{{$error}}</div>
+      @endforeach
+    @endif
    <h4 class ="well mb-4">{{$currentClass->class}}</h4>
    <h4 class ="classId" style="display:none">{{$currentClass->id}}</h4>
    <!--action = "{{route('Add-Student', ['id' => $currentClass->id])}}" method = "post"-->
