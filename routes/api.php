@@ -18,13 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::group(["middleware =>'auth:api'"], function(){
 
-    Route::get('/paginate', 'API@index');
-    Route::get('/sort', 'API@sort');
-    Route::get('/filter', 'API@filter');
+    Route::get('/paginate', 'InstitutionApi@index');
+    Route::get('/sort', 'InstitutionApi@sort');
+    Route::get('/filter', 'InstitutionApi@filter');
     Route::get('/search', 'API@search');
-    Route::get('/time', 'API@time')->name('time');
-    Route::post('/updateTime', 'API@updateTime')->name('update.time');
-    Route::post('/deleteTime', 'API@deleteTime')->name('delete.time');
-    Route::post('/checker', 'API@checker')->name('checker');
+    Route::get('/time', 'InstitutionApi@time')->name('time');
+    Route::post('/updateTime', 'InstitutionApi@updateTime')->name('update.time');
+    Route::post('/deleteTime', 'InstitutionApi@deleteTime')->name('delete.time');
 });
 

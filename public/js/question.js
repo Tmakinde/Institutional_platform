@@ -67,14 +67,12 @@ $(document).ready(function(){
       url: 'getallquestion' + '?id=' + topic_id,
       method:'GET',
       success:function(data){
+          window.location.reload();
           $("#tableAddForm").css('display', "block");
           $('.table.questions').append('<tr id = "eachquestion" value = '+data.topicQuestions[data.topicQuestions.length-1]['id']+'><td><div><span style ="border-width:1px;margin-top:10px;margin-bottom:10px;"><a href ="#" id ="getQuestions">Q'+$('.totalquestionnumber').html()+'</a></span></div></td></tr>');
           var counter = $('.questioncounter').closest('#eachquestion');
           console.log(counter);
-        //  $('#getQuestions').append('<br>'+i+'<br>');
-          //console.log('<tr id = "eachquestion" value = "'+data.topicQuestions[0]['id']+'"><td><div><span style ="border-width:1px;margin-top:10px;margin-bottom:10vx;"><a href ="#" id ="getQuestions">Q'+i+'</a></span></div></td></tr>');
-        
-      },
+        },
       error:function(jqXHR, textStatus, errorThrown){
         console.log(jqXHR);
         console.log(textStatus);

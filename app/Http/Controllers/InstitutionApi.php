@@ -9,7 +9,7 @@ use App\Timer;
 use Auth;
 use App\User;
 
-class API extends Controller
+class InstitutionApi extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +25,7 @@ class API extends Controller
 
         return response()->json([
             "institution" => $institution,
-        ]);
+        ], 201);
     }
     // sorting an API
 
@@ -53,7 +53,7 @@ class API extends Controller
         
         return response()->json([
             "institution" => $sortInstitution->paginate(10),
-        ]);
+        ], 201);
 
     }
     /**
@@ -69,7 +69,7 @@ class API extends Controller
             $sortInstitution = Institution::query()->where($criteria,'>',  $value);
             return response()->json([
                 "result" => $sortInstitution->paginate(3),
-            ]);
+            ], 201);
         }
     }
 
@@ -80,7 +80,7 @@ class API extends Controller
             $sortInstitution = Institution::query()->where($criteria, 'LIKE', "%{$value}%");
             return response()->json([
                 "result" => $sortInstitution->paginate(3),
-            ]);
+            ], 201);
         }
     }
 
@@ -133,7 +133,7 @@ class API extends Controller
         
         return response()->json([
             "success" => "success",
-        ]);
+        ], 200);
     }
 
     public function deleteTime(Request $request)
