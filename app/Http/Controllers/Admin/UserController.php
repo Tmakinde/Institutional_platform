@@ -470,7 +470,7 @@ class UserController extends Controller
     }
 
     public function setExamTime(Request $request, $id){
-       ;
+       
         try {
             $topic = Topic::find($id);
             if($topic != null ){

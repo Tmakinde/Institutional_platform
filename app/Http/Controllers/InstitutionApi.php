@@ -149,7 +149,6 @@ class InstitutionApi extends Controller
         ]);
     }
 
-    
     /**
      * Display the specified resource.
      *
