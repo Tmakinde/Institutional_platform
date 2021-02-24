@@ -49,18 +49,10 @@ class HomeController extends Controller
                     $currentUser->subjects()->attach($userClassSubjects->id);
                 }
                 
-                
-            //    $currentUser->subjects->each(function($subject){
-             //       if($subject->pivot->subject_id != $userClassSubjects->id){
-                //        $currentUser->subjects()->attach($userClassSubjects->id);
-                //    }
-
-             //   });
             
             }
             return redirect()->back();
         
-      //  dd($subjectClicked);
     }
 
     public function displayUserSubjects(Request $resquest){
@@ -90,12 +82,7 @@ class HomeController extends Controller
         $topic = Topic::where('Title',$request->title)->first();
         $topicTitle = $topic->Title;
         $topicContent = $topic->content;
-        
-    /*    if($topic->filename != null){
-            $topicFile = $topic->filename;
-            $file = Storage::disk('files/'.$topicFile.'/'.$topicFile);
-            
-        }*/
+
         return response()->json([
             'topicTitle'=>$topicTitle,
             'topicContent'=>$topicContent, 

@@ -32,9 +32,8 @@ class AdminController extends Controller
             'username' => ['required', 'string'],
             'password' => ['required', 'string'],
            
-        ]);
-            
-      
+        ]);      
+    
     }
 
     /**

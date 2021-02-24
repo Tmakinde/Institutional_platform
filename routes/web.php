@@ -84,6 +84,8 @@ Route::group(['prefix' => 'admin'],  function () {
     Route::get('/topics', 'HomeController@getTopic')->name('topics');
     Route::get('/ViewTopic', 'HomeController@viewTopic')->name('Get-Topic');
     Route::get('/downloadfile', 'HomeController@downloadfile')->name('download-file');
+    
+    
 
     // test question
     Route::get('/mytest', 'questionController@view')->name('test-question');

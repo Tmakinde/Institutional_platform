@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use App\Admin;
 use App\Institution;
 use DB;
+use Validator;
 
 class LoginController extends Controller
 {
@@ -17,7 +18,7 @@ class LoginController extends Controller
     // number of attempts
 
     public $maxAttempts = 3;
-   
+  
     // number of minute to lock login
 
     public $decayMinutes = 5000;
@@ -32,26 +33,7 @@ class LoginController extends Controller
     }
 
     public function authenticate(Request $request){
-
-        $credentials = $request->only('username', 'password');
-        $institutionFromSubdomain = $request->institution;
-        //$checkadmin = DB::table('admins')->where('is_activated',1)->where('username', $request['username'])->where('password', $request['password'])->first();
-        $checkadmin = Admin::where('username', $credentials['username'])->first();
-        $currentAdminInstitution = $checkadmin->institutions;
-
-        /*
-        *   first check if the current admin institution username is same as the subdomain name
-        */
-        
-        if($currentAdminInstitution->username == $institutionFromSubdomain){
-            if (Auth::guard('admins')->attempt($credentials)/* && !is_null($checkadmin)*/){
-                return redirect()->intended(route('dashboard'));
-            }
-        }else{
-            return redirect()->to('/admin');
-        }
-
-         /* 
+        /* 
         using login throttle to check attempt
         */
         
@@ -67,7 +49,38 @@ class LoginController extends Controller
 
         // keep track of user login attempts
         $this->incrementLoginAttempts($request);
-        return view('Admin.Login')->withErrors(['username or password is incorrect!']);
+
+        $validator = Validator::make($request->all(), [
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        if ($validator->passes()) {
+            $credentials = $request->only('username', 'password');
+            $institutionFromSubdomain = $request->institution;
+            //$checkadmin = DB::table('admins')->where('is_activated',1)->where('username', $request['username'])->where('password', $request['password'])->first();
+            $checkadmin = Admin::where('username', $credentials['username'])->first();
+            
+            /*
+            *   First check if the current admin institution username is same as the subdomain name
+            *
+            */
+
+            if($checkadmin->institutions->username == $institutionFromSubdomain){
+                if (Auth::guard('admins')->attempt($credentials)/* && !is_null($checkadmin)*/){
+                    return redirect()->intended(route('dashboard'));
+                }else{
+                    return redirect()->back()->withErrors("Incorrect username or password");
+                }
+            }else{
+                //dd($institutionFromSubdomain);
+                return redirect()->back()->withErrors("Make sure you are signing in with correct username of ypur school");
+            }
+
+        }else{
+            return redirect()->back()->withErrors($validator);
+        }
+
     }
 
     public function logout(){

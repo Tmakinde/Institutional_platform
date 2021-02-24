@@ -51,8 +51,8 @@
             <input type="password" class="form-control" name ='password' placeholder="Password">
           </div>
           <div class="card-body">
-            <label for="username" class="sr-only">Username</label>
-            <input type="text" class="form-control" name ='username' placeholder="Note that your username will be used as your subdoamin name e.g {Oasis}.alakada.com">
+            <label for="username" class="sr-only">Note that your username will be used as your subdoamin name e.g {Oasis}.alakada.come</label>
+            <input type="text" class="form-control" name ='username' placeholder="username">
           </div>
           <button class="btn btn-lg btn-primary btn-block" type="submit">Register Here</button>
       </form> 

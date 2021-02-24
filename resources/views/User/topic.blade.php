@@ -20,7 +20,7 @@
                   <a type ="button" class ="btn btn-info" href ="{{route('test-question', ['topic_id'=>$topic->id])}}"><small>start test</small></a>
                 </form>
               </td>
-            </tr>
+            </tr> 
           @endforeach
           </table>
         </td>

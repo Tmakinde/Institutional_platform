@@ -30,9 +30,7 @@ class Subdomain
                 $subdomain = $arrayUrl[0];
                 //$subdomain =  Route::getCurrentRoute()->getParameter('subdomain');
                 $checkInstitution = Institution::where('username', $subdomain)->firstOrFail();
-
                 $checkUsername = $checkInstitution->username;
-
                 $request->merge([
                     'institution' => $checkUsername,
                 ]);
