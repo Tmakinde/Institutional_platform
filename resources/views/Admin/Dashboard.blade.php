@@ -26,23 +26,34 @@ Online Educational<br> Platform</h2>
   <!-- End of About-->
 <h1 class="text-center text-primary mt-4">FAQ'S</h1>
   <!-- Our Offer -->
-  <div style="width:100%;margin-top:30px">
+  <div>
     <div>
-      <div class="title-box clearfix ">
-        <h1 class="title-box_primary" style="color:red"><b>What do we have for you ?</b></h1>
-      </div>
       <div class="panel-group" id="accordion">
+      <div class="panel panel-default" style="margin-top: 30px">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse0">
+                <h5 class="text-dark">What do we have for you?</h5>
+              </a>
+            </h4>
+          </div>
+          <div id="collapse0" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque totam nostrum, ullam iure earum culpa quod quas? Natus, velit repellat voluptas unde cupiditate ab vitae asperiores qui culpa quia maxime!</p>
+            </div>
+          </div>
+        </div>
         <div class="panel panel-default" style="margin-top: 30px">
           <div class="panel-heading">
             <h4 class="panel-title">
               <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                <h1>Who are Users ?</h1>
+                <h5 class="text-dark">Who are Users ?</h5>
               </a>
             </h4>
           </div>
           <div id="collapse1" class="panel-collapse collapse in">
             <div class="panel-body">
-              <h2>Users are Schools, Tutorial centre, Student or any platform that has to do with teaching.</h2>
+              <p>Users are Schools, Tutorial centre, Student or any platform that has to do with teaching.</p>
             </div>
           </div>
         </div>
@@ -50,28 +61,28 @@ Online Educational<br> Platform</h2>
           <div class="panel-heading">
             <h4 class="panel-title">
               <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                <h1>What will Users be able to do ?</h1>
+                <h5 class="text-dark">What will Users be able to do ?</h5>
               </a>
             </h4>
           </div>
           <div id="collapse2" class="panel-collapse collapse">
             <div class="panel-body">
-              <h2>Users will be able to :</h2>
+              <p>Users will be able to :</h2>
               <ul style="line-height:30px">
                 <li>
-                  <h3>Create class</h3>
+                  <p>Create class</p>
                 </li>
                 <li>
-                  <h3>Add students</h3>
+                  <p>Add students</p>
                 </li>
                 <li>
-                  <h3>Create Subject and add its Topics</h3>
+                  <p>Create Subject and add its Topics</p>
                 </li>
                 <li>
-                  <h3>Add questions to each topic</h3>
+                  <p>Add questions to each topic</p>
                 </li>
                 <li>
-                  <h3>Students wil be able to access themsleves on each completed Topic</h3>
+                  <p>Students wil be able to access themsleves on each completed Topic</p>
                 </li>
               </ul>
             </div>
@@ -81,22 +92,22 @@ Online Educational<br> Platform</h2>
           <div class="panel-heading">
             <h4 class="panel-title">
               <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                <h1>What can students do ?</h1>
+                <h5 class="text-dark">What can students do ?</h5>
               </a>
             </h4>
           </div>
           <div id="collapse3" class="panel-collapse collapse">
             <div class="panel-body">
-              <h2>Users will be able to :</h2>
+              <p>Students will be able to :</p>
               <ul style="line-height:30px">
                 <li>
-                  <h3>Choose the subjects they want</h3>
+                  <p>Choose the subjects they want</p>
                 </li>
                 <li>
-                  <h3>Have access to various topics and its assigned questions.</h3>
+                  <p>Have access to various topics and its assigned questions.</p>
                 </li>
                 <li>
-                  <h3>Submission of exercise.</h3>
+                  <p>Submit excercises.</p>
                 </li>
               </ul>
             </div>
