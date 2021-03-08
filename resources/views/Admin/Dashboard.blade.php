@@ -6,26 +6,25 @@
 
 @section('content')
 <!-- Carousel -->
-<div class="heading-text text-center">
-  <h1 class="animated flipInY delay1">{{$currentInstitution->name}}</h1>
-  <p>Online Educational<br> Platform for<br> our Students</p>
+<div class="heading-text text-center pt-5">
+  <h2 class="m-0">{{$currentInstitution->name}}<br>
+Online Educational<br> Platform</h2>
   <img src="https://res.cloudinary.com/sam-kay/image/upload/v1614877353/tolu/Untitled_1_p6alhw.png" alt="">
 </div>
 <!-- About-->
-<section class="container" style="margin-top:20px">
-  <div class="row">
-    <div class="col-md-8">
-      <div class="title-box clearfix ">
-        <h1 class="title-box_primary" style="color:red;margin-top:30px"><b>About Us</b></h1>
-      </div>
-      <p>
-      <h2>This is an institution platform where any institution can signup and get started in giving their student access to online courses which they prepare for themselves
-        It's purpose is to be able to connect different schools or tutorial centres on a single platform.</h2>
-      </p>
+<section class="container mt-4 p-md-4">
+  <h1 class="text-center text-primary mb-4">About Us</h1>
+  <div class="row about mb-5">
+    <div class="col-md about-text d-flex align-items-md-center ">
+      <p  class="py-4 py-md-0 order-last order-md-1">This is an institution platform where any institution can signup and get started in giving their student access to online courses which they prepare for themselves
+        It's purpose is to be able to connect different schools or tutorial centres on a single platform.</p>
+    </div>
+    <div class="col-md order-first order-md-2">
+      <img class="about-img my-5" src="https://res.cloudinary.com/sam-kay/image/upload/q_auto:low/tolu/about_u17yqh.jpg" alt="">
     </div>
   </div>
   <!-- End of About-->
-
+<h1 class="text-center text-primary mt-4">FAQ'S</h1>
   <!-- Our Offer -->
   <div style="width:100%;margin-top:30px">
     <div>
