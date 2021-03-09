@@ -141,7 +141,7 @@
             font-family: 'Open Sans', sans-serif;
             ;
           
-            padding: 13vh 0px 13vh 0px;
+            padding: 20vh 0px 20vh 0px;
             color: #E7E5DF;
             font-weight: bolder;
 
