@@ -254,19 +254,14 @@
         <div class="container text-center">
             <img src="https://res.cloudinary.com/sam-kay/image/upload/q_auto:low/tolu/logo_ykw2fx.png" alt="" class="mb-4 footer-logo">
             <div class="row mb-4">
-                <div class="col text-center text-primary">
-                    <h5><a href="" class="footer-link mt-3"> Subject</a></h5>
-                </div>
-                <div class="col text-center text-primary">
-                    <h5><a href="" class="footer-link mt-3">Class</a></h5>
-                </div>
-
-                <div class="col text-center text-primary">
-                    <h5><a href="" class="footer-link mt-3">Stuent</a></h5>
-                </div>
-                <div class="col  text-primary text-center">
-                    <h5><a href="" class="footer-link mt-5">Admin</a></h5>
-                </div>
+                <a href="" class="footer-link col text-center text-primary font-weight-bold"> Subject</a>
+                
+                <a href="" class="footer-link col text-center text-primary font-weight-bold">Class</a>
+                
+                <a href="" class="footer-link col text-center text-primary font-weight-bold">Student</a>
+                
+                <a href="" class="footer-link col text-center text-primary font-weight-bold">Admin</a>
+                
             </div>
             <div class="icons mb-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-facebook m-2" viewBox="0 0 16 16">
