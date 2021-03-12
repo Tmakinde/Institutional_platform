@@ -142,12 +142,12 @@
     <div class="panel panel-default card mb-4">
       <div class="panel-heading card-header">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
             <h5 class="text-dark">How to navigate through the webpage to Add Subject to Class</h5>
           </a>
         </h4>
       </div>
-      <div id="collapse5" class="panel-collapse collapse in ">
+      <div id="collapse6" class="panel-collapse collapse in ">
         <div class="panel-body card-body">
           <p>Click assign button</p>
         </div>
@@ -218,13 +218,6 @@
     </p>
   </div>
 </section> -->
-<footer id="footer" style="margin-top: 50px;clear:top;width:100%">
-  <div class="row" style="width:100%">
-    <div class="col-md-4 col-sm-3">
-      <a href="https://github.com/Tmakinde/"><i class="fa fa-github">Github Link</i></a>
-    </div>
-  </div>
-</footer>
 @endsection
 
 @section('scripts')

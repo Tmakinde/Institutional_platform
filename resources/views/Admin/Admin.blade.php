@@ -21,7 +21,7 @@
             <td>
             <form method = 'post' action = "{{route('Delete-Admin', ['id' => $Admins->id])}}">
             @csrf
-            <button class="btn btn-warning" type="submit">Delete</button>
+            <button class="btn btn-danger" type="submit">Delete</button>
             </form>
             </td>      
           </tr>
