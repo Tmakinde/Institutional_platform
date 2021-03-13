@@ -7,27 +7,27 @@
 @section('content')
 <!-- Carousel -->
 <div class="heading-text text-center pt-5">
-  <h2 class="m-0">{{$currentInstitution->name}}<br>
+  <h2 class="m-0" data-aos="zoom-in">{{$currentInstitution->name}}<br>
     Online Educational<br> Platform</h2>
   <img src="https://res.cloudinary.com/sam-kay/image/upload/v1614877353/tolu/Untitled_1_p6alhw.png" alt="">
 </div>
 <!-- About-->
 <section class="container mt-4 p-md-5">
   <h1 class="text-center text-primary mb-4">About Us</h1>
-  <div class="row about mb-5">
-    <div class="col-md about-text d-flex align-items-md-center ">
+  <div class="row about mb-5 ">
+    <div class="col-md about-text d-flex align-items-md-center " data-aos="fade-right">
       <p class="py-4 order-last order-md-1">This is an institution platform where any institution can signup and get started in giving their student access to online courses which they prepare for themselves
         It's purpose is to be able to connect different schools or tutorial centres on a single platform.</p>
     </div>
     <div class="col-md order-first order-md-2">
-      <img class="about-img my-5" src="https://res.cloudinary.com/sam-kay/image/upload/q_auto:low/tolu/about_u17yqh.jpg" alt="">
+      <img class="about-img my-5" src="https://res.cloudinary.com/sam-kay/image/upload/q_auto:low/tolu/about_u17yqh.jpg" alt="" data-aos="fade-left"> 
     </div>
   </div>
   <!-- End of About-->
   <h1 class="text-center text-primary mt-4 mb-4">FAQs</h1>
   <!-- Our Offer -->
   <div class="panel-group w-75 py-5" id="accordion">
-    <div class="panel panel-default card mb-4">
+    <div class="panel panel-default card mb-4" data-aos="fade-down">
       <div class="panel-heading card-header">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse0">
@@ -41,7 +41,7 @@
         </div>
       </div>
     </div>
-    <div class="panel panel-default card mb-4">
+    <div class="panel panel-default card mb-4" data-aos="fade-down">
       <div class="panel-heading card-header">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
@@ -55,7 +55,7 @@
         </div>
       </div>
     </div>
-    <div class="panel panel-default card mb-4">
+    <div class="panel panel-default card mb-4" data-aos="fade-down">
       <div class="panel-heading card-header">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
@@ -86,7 +86,7 @@
         </div>
       </div>
     </div>
-    <div class="panel panel-default card mb-4">
+    <div class="panel panel-default card mb-4" data-aos="fade-down">
       <div class="panel-heading card-header">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
@@ -111,7 +111,7 @@
         </div>
       </div>
     </div>
-    <div class="panel panel-default card mb-4">
+    <div class="panel panel-default card mb-4" data-aos="fade-down">
       <div class="panel-heading card-header">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
@@ -125,7 +125,7 @@
         </div>
       </div>
     </div>
-    <div class="panel panel-default card mb-4">
+    <div class="panel panel-default card mb-4" data-aos="fade-down">
       <div class="panel-heading card-header">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
@@ -139,7 +139,7 @@
         </div>
       </div>
     </div>
-    <div class="panel panel-default card mb-4">
+    <div class="panel panel-default card mb-4" data-aos="fade-down" >
       <div class="panel-heading card-header">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">

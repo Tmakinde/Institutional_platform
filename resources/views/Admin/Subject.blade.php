@@ -36,7 +36,7 @@
               <button class="btn btn-danger" type="submit">Delete</button>
               </form>
             </td>
-            <td id = "usernameColumn" style = "text-align:center"><a href = "{{route('Topic-Section', ['id' => $subject->id])}}"button class ="btn btn-primary">Click here to create topic</td> 
+            <td id = "usernameColumn" style = "text-align:center"><a href = "{{route('Topic-Section', ['id' => $subject->id])}}"button class ="btn btn-primary">create topic</td> 
           </tr>
       @endforeach
       </tbody>

@@ -44,7 +44,7 @@
         <td id ="tableEditForm" style ="display:none">
         <table>
           <tbody>
-            <tr style ="" >
+            <tr >
              
                 <div class ="alert alert-success" style ="display:none"></div>
             
@@ -77,7 +77,7 @@
         <td id ="tableAddForm" style ="display:none">
         <table>
           <tbody>
-            <tr style ="" >
+            <tr>
               @if($message = Session::get('success'))
                 <div class ="alert alert-success">{{$message}}</div>
               @endif

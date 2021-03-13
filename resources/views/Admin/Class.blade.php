@@ -7,11 +7,11 @@
 @section('content')
    <div class="container mt-5 pt-5" >
     
-   <h4 class ="well mb-4">CLASSES</h4>
+   <h4 class ="well mb-4">Classes</h4>
     <form action = "{{route('Add-Class')}}" method = "post">
     @csrf
         <input type = "text" name = "class" placeholder ="Input Class Name here">
-        <input type ="Submit" value ="Add">
+        <input type ="Submit" value ="+Add">
     </form>
     
     <table class="table mt-5 table-bordered">
