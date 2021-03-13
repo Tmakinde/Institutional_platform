@@ -22,16 +22,25 @@
 
     <script src="https://afarkas.github.io/lazysizes/plugins/blur-up/ls.blur-up.min.js"></script>
     <script src="https://afarkas.github.io/lazysizes/lazysizes.min.js"></script>
+ 
+
+
     <link rel="stylesheet" href="{{ url('/js/lazysizes.min.js')}}">
     <!-- include libraries(jQuery, bootstrap) -->
 
     <!-- include summernote css/js -->
     <link href="{{ url('/css/summernote-bs4.min.css')}}" rel="stylesheet">
+    <link href="{{ url('/css/dashboard.css')}}" rel="stylesheet">
     <link href="{{ url('/js/summernote-bs4.min.js')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="{{url('/js/assets/dashboard.js')}}"> </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
@@ -116,96 +125,6 @@
             overflow-x: hidden;
 
         }
-
-        /* navbar */
-        .sign-out {
-            background-color: #084ba2;
-            border-radius: 7px;
-            color: white !important;
-            transition: 0.2s ease-out;
-        }
-
-        .sign-out:hover {
-            background-color: #073f89;
-        }
-
-        .navbar-brand img {
-            width: 50px;
-        }
-
-        .navbar-brand span {
-            line-height: 20px;
-        }
-
-        /* =================================== */
-        .heading-text {
-            width: 100vw;
-            background-size: cover;
-            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url("https://res.cloudinary.com/tmakinde/image/upload/q_auto:low/Myinstitution%20Images/img3_u2mek3.jpg");
-            background: -webkit-linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url("https://res.cloudinary.com/tmakinde/image/upload/q_auto:low/Myinstitution%20Images/img3_u2mek3.jpg");
-            background-attachment: fixed;
-            overflow-x: hidden;
-
-        }
-
-        .heading-text h2 {
-            font-family: 'Open Sans', sans-serif;
-            ;
-
-            padding: 20vh 0px 20vh 0px;
-            color: #E7E5DF;
-            font-weight: bolder;
-
-        }
-
-        .heading-text img {
-
-            padding: 0;
-            width: 100vw;
-
-
-        }
-
-        .about-img {
-            width: 100%;
-            border-radius: 54% 46% 22% 78% / 43% 53% 47% 57%;
-            border: 0.2px solid #eeeeef;
-        }
-
-        p {
-            font-size: 17px !important;
-        }
-
-        .icons svg {
-            transition: 0.3s ease-out;
-
-        }
-
-        .icons svg:hover {
-            transform: scale(1.2);
-            transition: 0.3s ease-out;
-        }
-
-        .footer-link {
-            text-decoration: none !important;
-        }
-
-        footer {
-            background: rgba(0, 0, 0, 0.08);
-        }
-
-        footer img {
-            width: 100vw;
-            padding: 0;
-        }
-
-        footer .container {
-            max-width: 500px;
-        }
-
-        .footer-logo {
-            width: 80px;
-        }
     </style>
 
 <body>
@@ -255,13 +174,13 @@
             <img src="https://res.cloudinary.com/sam-kay/image/upload/q_auto:low/tolu/logo_ykw2fx.png" alt="" class="mb-4 footer-logo">
             <div class="row mb-4">
                 <a href="" class="footer-link col text-center text-primary font-weight-bold"> Subject</a>
-                
-                <a href="" class="footer-link col text-center text-primary font-weight-bold">Class</a>
-                
+
+                <a href="{{route('Class-Section')}}" class="footer-link col text-center text-primary font-weight-bold">Class</a>
+
                 <a href="" class="footer-link col text-center text-primary font-weight-bold">Student</a>
-                
-                <a href="" class="footer-link col text-center text-primary font-weight-bold">Admin</a>
-                
+
+                <a href="{{route('Admin-Section')}}" class="footer-link col text-center text-primary font-weight-bold">Admin</a>
+
             </div>
             <div class="icons mb-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-facebook m-2" viewBox="0 0 16 16">
@@ -283,6 +202,7 @@
 
     @section('scripts')
     <!-- include libraries(jQuery, bootstrap) -->
+
     <link href="{{asset('/js/assets/js/modernizr-latest.js')}}">
     </script>
     <link href="{{url('/js/assets/js/jquery.min.js')}}">

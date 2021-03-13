@@ -20,9 +20,9 @@
         <label>Would you like to upload a File ?</label><br>    
         <input type = "file" name = "file"><br>
         <hr>
-        <input type ="Submit" id = "AddSubmit" value ="Submit">
+        <input type ="Submit" id = "AddSubmit" class="btn btn-primary" value ="Submit">
     </form>
-    <h4 class ="well mb-4">Previous Topic under {{$subject->Subjectname}}</h4>
+    <h4 class ="well mb-4 mt-3">Previous Topic under {{$subject->Subjectname}}</h4>
     <table class="table mt-5 table-bordered table-hoverd ">
     <thead>
       <tr>
