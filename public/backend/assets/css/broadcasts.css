@@ -1,0 +1,253 @@
+.container-content {
+    height: 1000px;
+}
+
+.heading-container{
+    margin: 3%;
+    height: 30%;
+}
+
+.bg{
+    background-color: #333CC1;
+    height: 70%;
+}
+
+.heading-content {
+    display: flex;
+    flex-direction: column;
+    margin: 2% 5% 5% 5%;
+    align-items: center;
+}
+
+.heading-container-text {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.text{
+    color: #FFFFFF;
+    margin: 5%;
+}
+
+.text > p {
+    margin-bottom: 0;
+}
+
+
+/* start of message card */
+.message-card{
+    background-color: white;
+    width: 60%;
+    height: 30%;
+    padding: 1% 3%;
+    border: 1px solid rgba(51, 60, 193, 0.81);
+    border-radius: 5px;
+}
+
+.message-card-text > p {
+    margin-bottom: 0;
+}
+
+.message-card-link{
+    color: #333CC1;
+    padding: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.message-card-link:hover{
+    cursor: pointer;
+}
+
+.message-card-link p {
+    justify-self: center;
+    margin-bottom: 0;
+}
+
+.fa-arrow-right{
+    margin-left: 5%;
+    align-self: center;
+}
+/* end of message card */
+
+
+form {
+    width: 100%;
+    height: 500px;
+    margin: 8% auto;
+}
+
+/* search bar */
+.search{
+    width: 40%;
+    margin: 0 auto;
+    margin-bottom: 3%;
+}
+
+input{
+    width: 100%;
+    height: 47px;
+    align-self: center;
+    padding: 3%;
+    font-weight: bold;
+    border: none;
+    border: 1px solid #D1D1D1;
+}
+
+.mainLoginInput::-webkit-input-placeholder { 
+    font-family: FontAwesome;
+    font-weight: normal;
+    overflow: visible;
+    vertical-align: top;
+    display: inline-block !important;
+    padding-left: 5px;
+    padding-top: 2px;
+}
+    
+.mainLoginInput::-moz-placeholder  { 
+    font-family: FontAwesome;
+    font-weight: normal;
+    overflow: visible;
+    vertical-align: top;
+    display: inline-block !important;
+    padding-left: 5px;
+    padding-top: 2px;
+}
+    
+.mainLoginInput:-ms-input-placeholder  { 
+    font-family: FontAwesome;
+    font-weight: normal;
+    overflow: visible;
+    vertical-align: top;
+    display: inline-block !important;
+    padding-left: 5px;
+    padding-top: 2px;
+}
+/* search bar */
+
+
+
+.contacts {
+  width: 100%;
+  margin: 3% 0;
+  background-color: #ffffff;
+}
+
+
+
+/* start of buttons */
+.button-container {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons{
+    width: 40%;
+    height: 50px;
+    line-height: 50px;
+    border: none;
+    border: 1px solid #FF8C5F;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #FF8C5F;
+    color: #ffffff;
+}
+
+.buttons:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #be4d20; 
+}
+
+.inverted{
+    border: 1px solid #FF8C5F;
+    background-color: #ffffff;
+    color: #FF8C5F;
+}
+
+.inverted:hover{
+    border: none;
+    color:#FF8C5F;;
+    background: transparent;
+}
+/* start of buttons */
+
+
+
+/* start of media queries */
+
+@media screen and (max-width: 767px) {
+    .heading-container{
+        margin: 0;
+    }
+    
+    h2{
+        font-size: large;
+    }
+
+    .bg{
+        height: 50%;
+    }
+
+    .text > p {
+       font-size: 0.7rem;
+    }
+
+    .message-card{
+        width: 100%;
+        height: 10%;
+    }
+
+    .message-card-text > p {
+        font-size: 0.7rem;
+    }
+    
+    .search{
+        margin-bottom: 6%;
+    }
+    
+    h4{
+        font-size: 0.9rem;
+    }
+    
+    .text2{
+        margin-top: 0;
+    }
+    
+    form {
+        margin: 1% auto;
+    }
+    
+    .button-container {
+        margin: 15% 5% 5% 5%;
+    }
+    
+    .search, .buttons {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 880){
+    .button-container{
+        margin-top: 15%;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .search, .buttons {
+        width: 90%;
+    }
+}
+/* end of media queries */
+
+.indexing {
+  display: flex;
+  justify-content: center;
+}

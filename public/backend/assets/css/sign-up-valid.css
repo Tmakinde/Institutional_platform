@@ -1,0 +1,39 @@
+
+.red-warn, .pass-feedback {
+  color:red; 
+  font-size:0.8rem;
+  margin-top: 2px;
+  display: none;
+}
+
+.invalid {
+  border-color: red;
+}
+
+.invalid:focus {
+  border-color: red;
+}
+
+.strength-mid {
+  color: #A18533;
+}
+
+.medium {
+  border-color: #A18533;
+}
+
+.medium:focus {
+  border-color: #A18533;
+}
+
+.strength-maximum {
+  color: green;
+}
+
+.maximum {
+  border-color: green;
+}
+
+.maximum:focus {
+  border-color: green;
+}

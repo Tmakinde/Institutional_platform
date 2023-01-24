@@ -1,0 +1,43 @@
+.customer-heading-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-customer-button {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-new-icon {
+  margin: 6px;
+}
+
+.btn-primary, .badge-primary {
+  background-color: #333CC1;
+}
+
+.btn-info {
+  background-color: #5258aa;
+}
+
+.content {
+  position: relative;
+}
+
+.float:hover {
+  background: #fff;
+}
+
+.card {
+  height: 100%;
+}
+
+.padup {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  height: 100%;
+}

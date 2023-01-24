@@ -1,0 +1,40 @@
+.customer-info {
+    list-style-type: none;
+}
+.customer-field{
+    padding-top: 1rem;
+    text-align:justify;
+    font-weight: 700;
+}
+.customer-acct{
+    font-weight:300;
+}
+.address{
+    padding-top:0;
+    padding-left: 1.5rem;
+}
+.customer-address{
+    font-weight: 200;
+    line-height: 1.35rem;
+    font-size: .9rem;
+}
+.cust-email{
+    font-weight: 200;
+}
+
+/**responsive**/
+@media only scren and (max-width:768px){
+    ul.customer-info{
+        display: inline;
+    }
+
+}
+@media only screen and (max-width:576px){
+    .address{
+        text-align: center;
+        width: 100%;
+    }
+    .profile-fields{
+        display: flex;
+    }
+}

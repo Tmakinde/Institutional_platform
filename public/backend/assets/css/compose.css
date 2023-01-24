@@ -1,0 +1,10 @@
+.header {
+    font-weight: bolder;
+}
+
+.button{
+    width: 40%;
+    margin: 3% auto;
+    margin-left: 30%;
+    text-align: center;
+}
